@@ -556,21 +556,21 @@ class MainWindow(QtWidgets.QMainWindow):
         self.graphWidget.plot(hour, temperature)
 '''
 # progressBar
-class MyWidget(QtWidgets.QWidget):
-    def __init__(self):
-        QtWidgets.QWidget.__init__(self)
+# class MyWidget(QtWidgets.QWidget):
+#     def __init__(self):
+#         QtWidgets.QWidget.__init__(self)
         
-        #CLASS INSTANCE
-        self.rpb = roundProgressBar()
-        #LINE WIDTH 
-        self.rpb.rpb_setLineWidth(10)
-        #LINE CAP
-        self.rpb.rpb_setLineCap('RoundCap')
-        self.rpb.rpb_setValue(45)
+#         #CLASS INSTANCE
+#         self.rpb = roundProgressBar()
+#         #LINE WIDTH 
+#         self.rpb.rpb_setLineWidth(10)
+#         #LINE CAP
+#         self.rpb.rpb_setLineCap('RoundCap')
+#         self.rpb.rpb_setValue(45)
 
-        self.layout = QtWidgets.QHBoxLayout()
-        self.layout.addWidget(self.rpb)
-        self.setLayout(self.layout)
+#         self.layout = QtWidgets.QHBoxLayout()
+#         self.layout.addWidget(self.rpb)
+#         self.setLayout(self.layout)
 
 # app =  QtWidgets.QApplication(sys.argv)
 # window = Ui()
