@@ -18,8 +18,8 @@ import time
 from threading import Thread
 import secrets
 
-from PySide2 import QtCore, QtWidgets, QtGui
-from PySide2extn.RoundProgressBar import roundProgressBar
+#from PySide2 import QtCore, QtWidgets, QtGui
+#from PySide2extn.RoundProgressBar import roundProgressBar
 
 class Ui(QtWidgets.QMainWindow):
     A_angular = "12"
@@ -194,15 +194,10 @@ class Ui(QtWidgets.QMainWindow):
         self.Coordinate_x.setText(Coordinate_x)
         self.Coordinate_y = self.findChild(QLabel, "label_105")
         self.Coordinate_y.setText(Coordinate_y)
-        
-        radioButton_1 = self.findChild(QRadioButton, "radioButton")
-        #self.radioButton_1.setStyleSheet("background-color : lightgreen")
-        #radioButton_1.setStyleSheet("background-color: red; border: 1rem solid black")
-        
 
-        radioButton_2 = self.findChild(QRadioButton, "radioButton_7")
-        #self.radioButton_1.setStyleSheet("background-color : lightgreen")
-        #radioButton_2.setStyleSheet("background-color: red")
+        self.airLabel = self.findChild(QLabel, "label_103")
+        self.airLabel.setText("Good")
+        
         #window title 
         self.iconText = self.setWindowTitle("FUM_CAN")
         self.windowIcon = self.setWindowIcon(QtGui.QIcon('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\logo-white.jpg'))
@@ -306,13 +301,13 @@ class Ui(QtWidgets.QMainWindow):
         pixmap = pixmap.scaled(low_rez)
         ILogo.setPixmap(pixmap)
 
-        # ILogo = QLabel()
-        # pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\image1.jpg')
-        # low_rez = QtCore.QSize(321, 151)
-        # ILogo.setPixmap(pixmap)
-        # imgWidget = self.findChild(QWidget, "widget_7")
-        # ILogo.setParent(imgWidget)
-        '''
+        receivedImage = QLabel()
+        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\image1.jpg')
+        low_rez = QtCore.QSize(321, 151)
+        receivedImage.setPixmap(pixmap)
+        imgWidget = self.findChild(QWidget, "widget_7")
+        receivedImage.setParent(imgWidget)
+        
         #Sensors
         SPressure = self.findChild(QLabel, "label_110")
         pixmapG = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\button-green.jpg')
@@ -327,7 +322,7 @@ class Ui(QtWidgets.QMainWindow):
         
         SAcceleration = self.findChild(QLabel, "label_110")
 
-        '''
+        
         
         # Map
         m = folium.Map(
@@ -351,8 +346,9 @@ class Ui(QtWidgets.QMainWindow):
         self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_4.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_5.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        #a = MainWindow()
-        #a.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        # height
+        height = MainWindow()
+        height.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         self.show()
 
         '''    #roundProgressBar
@@ -496,7 +492,7 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
 
-        '''
+        
         self.graphWidget = pg.PlotWidget()
         hour = [1,2,3,4,5,6,7,8,9,10]
         temperature = [30,32,34,32,33,31,29,32,35,45]
@@ -504,9 +500,9 @@ class Ui(QtWidgets.QMainWindow):
         self.graphWidget.setBackground('w')
         self.graphWidget.plot(hour, temperature)
         a = self.findChild(QWidget, "widget_5")
-        #a.addWidget(self.graphWidget)
+        a.addWidget(self.graphWidget)
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
-        '''
+        
 
 
 class MyApp(QWidget):
@@ -540,7 +536,6 @@ class MyApp(QWidget):
         self.show()
 
 # height
-'''
 class MainWindow(QtWidgets.QMainWindow):
 
     def __init__(self, *args, **kwargs):
@@ -552,47 +547,47 @@ class MainWindow(QtWidgets.QMainWindow):
         hour = [1,2,3,4,5,6,7,8,9,10]
         temperature = [30,32,34,32,33,31,29,32,35,45]
 
-        self.graphWidget.setBackground('w')
-        self.graphWidget.plot(hour, temperature)
-'''
-# progressBar
-# class MyWidget(QtWidgets.QWidget):
-#     def __init__(self):
-#         QtWidgets.QWidget.__init__(self)
+#       self.graphWidget.setBackground('w')
+#       self.graphWidget.plot(hour, temperature)
+ 
+#progressBar
+class MyWidget(QtWidgets.QWidget):
+     def __init__(self):
+         QtWidgets.QWidget.__init__(self)
         
-#         #CLASS INSTANCE
-#         self.rpb = roundProgressBar()
-#         #LINE WIDTH 
-#         self.rpb.rpb_setLineWidth(10)
-#         #LINE CAP
-#         self.rpb.rpb_setLineCap('RoundCap')
-#         self.rpb.rpb_setValue(45)
+         #CLASS INSTANCE
+         self.rpb = roundProgressBar()
+         #LINE WIDTH 
+         self.rpb.rpb_setLineWidth(10)
+         #LINE CAP
+         self.rpb.rpb_setLineCap('RoundCap')
+         self.rpb.rpb_setValue(45)
 
-#         self.layout = QtWidgets.QHBoxLayout()
-#         self.layout.addWidget(self.rpb)
-#         self.setLayout(self.layout)
+         self.layout = QtWidgets.QHBoxLayout()
+         self.layout.addWidget(self.rpb)
+         self.setLayout(self.layout)
 
 # app =  QtWidgets.QApplication(sys.argv)
 # window = Ui()
 # app.exec_()
-#acceleration = 0
 
 
 if __name__ == "__main__":
-  ui=Ui()
-  app = QApplication(sys.argv)
-  app.setStyleSheet('''
-        QWidget {
-            font-size: 35px;
-        }
-    ''')
+    app = QApplication(sys.argv)
+    ui=Ui()
+    app.exec_()
+    # app.setStyleSheet('''
+    #     QWidget {
+    #         font-size: 35px;
+    #     }
+    # ''')
     
-  myApp = MyApp()
+#   myApp = MyApp()
   
-  #myApp.show()
+#   #myApp.show()
 
-  try:
-    sys.exit(app.exec_())
-  except SystemExit:
-    print('Closing Window...')
+#   try:
+#     sys.exit(app.exec_())
+#   except SystemExit:
+#     print('Closing Window...')
 
