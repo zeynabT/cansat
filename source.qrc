@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>image2.jpg</file>
+    <file>image1-copy.jpg</file>
+    <file>logo.jpg</file>
+    <file>Acceleration.jpg</file>
+    <file>icons8-speedometer-25.jpg</file>
+    <file>photo_2022-11-08_14-58-52.jpg</file>
+    <file>icons8-temperature-30.jpg</file>
+    <file>icons8-satellite-24.jpg</file>
+    <file>icons8-speedometer-48.jpg</file>
+    <file>icons8-sensor-30.jpg</file>
+    <file>icons8-sun-50.jpg</file>
+    <file>icons8-air-50.jpg</file>
+    <file>icons8-humidity-30 (1).jpg</file>
+    <file>icons8-temperature-inside-30 (1).jpg</file>
+    <file>icons8-pressure-48.jpg</file>
+    <file>icons8-temperature-outside-50.jpg</file>
+  </qresource>
+</RCC>
