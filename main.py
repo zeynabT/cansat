@@ -7,21 +7,78 @@ from PyQt5.QtGui import *
 #from PySide2extn.RoundProgressBar import roundProgressBar
 #from PySide6 import QtCore
 import sys
-
+from pyqtgraph import PlotWidget, plot
+import pyqtgraph as pg
+import os
 import io
 import folium # pip install folium
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
 from PyQt5.QtWebEngineWidgets import QWebEngineView # pip install PyQtWebEngine
+import time
+from threading import Thread
+import secrets
+
+from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2extn.RoundProgressBar import roundProgressBar
 
 class Ui(QtWidgets.QMainWindow):
-    def __init__(self):
+    A_angular = "12"
+    A_linear = "20"
+    Pressure = "60"
+    Pressure_1 = "0"
+    Pressure_2 = "0"
+    Pressure_3 = "0"
+    Pressure_4 = "0"
+    Pressure_5 = "0"
+    Pressure_6 = "0"
+    
+    InTemp = "2"
+    InTemp_1 = "0"
+    InTemp_2 = "0"
+    InTemp_3 = "0"
+    InTemp_4 = "0"
+    InTemp_5 = "0"
+    InTemp_6 = "0"
+    
+    OutTemp = "3"
+    OutTemp_1 = "0"
+    OutTemp_2 = "0"
+    OutTemp_3 = "0"
+    OutTemp_4 = "0"
+    OutTemp_5 = "0"
+    OutTemp_6 = "0"
+    
+    Hiumidity = "7"
+    Hiumidity_1 = "0"
+    Hiumidity_2 = "0"
+    Hiumidity_3 = "0"
+    Hiumidity_4 = "0"
+    Hiumidity_5 = "0"
+    Hiumidity_6 = "0"
+
+    AirQuality = "4"
+    UVIndex = "6"
+    
+    CoordinateX = 37.8199286
+    CoordinateY = -122.4782551
+    Coordinate_x = str(CoordinateX)
+    Coordinate_y =  str(CoordinateY)
+    coordinate = (CoordinateX, CoordinateY)
+
+    sensorPressure = True
+    sensorAcceleration = True
+    sensorTemp = True
+    sensorHumidity = True
+    sensorAirQ = True
+    sensorUV = True
+
+    def __init__(self,parent=None):
         super(Ui, self).__init__()
         uic.loadUi('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\CAN-SAT2.ui', self)
         
         A_angular = "12"
         A_linear = "20"
-        
-        Pressure = "80"
+        Pressure = "60"
         Pressure_1 = "1"
         Pressure_2 = "2"
         Pressure_3 = "3"
@@ -66,8 +123,7 @@ class Ui(QtWidgets.QMainWindow):
         self.LA_angular = self.findChild(QLabel, "label_96")
         self.LA_angular.setText(A_angular)
         self.LA_linear = self.findChild(QLabel, "label_97")
-        self.LA_linear.setText(A_linear)
-        
+        self.LA_linear.setText(A_linear)    
         self.LPressure = self.findChild(QLabel, "label_2")
         self.LPressure.setText(Pressure)
         self.LPressure_1 = self.findChild(QLabel, "label_67")
@@ -151,7 +207,6 @@ class Ui(QtWidgets.QMainWindow):
         self.iconText = self.setWindowTitle("FUM_CAN")
         self.windowIcon = self.setWindowIcon(QtGui.QIcon('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\logo-white.jpg'))
         
-        
         #icon
         IPressure = self.findChild(QLabel, "label_5")
         pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\pressure.jpg')
@@ -172,7 +227,8 @@ class Ui(QtWidgets.QMainWindow):
         IInTemp.setPixmap(pixmap)
         
         IIOutTemp = self.findChild(QLabel, "label_8")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\temperature-outside2.jpg')
+        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\temperature-outside4.jpg')
+        low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IIOutTemp.setPixmap(pixmap)
         
@@ -243,12 +299,35 @@ class Ui(QtWidgets.QMainWindow):
         pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\satellite.jpg')
         pixmap = pixmap.scaled(low_rez)
         ISatellite_2.setPixmap(pixmap)
-            
+         
         ILogo = self.findChild(QLabel, "label_107")
         pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\logo.jpg')
         low_rez = QtCore.QSize(50, 45)
         pixmap = pixmap.scaled(low_rez)
         ILogo.setPixmap(pixmap)
+
+        # ILogo = QLabel()
+        # pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\image1.jpg')
+        # low_rez = QtCore.QSize(321, 151)
+        # ILogo.setPixmap(pixmap)
+        # imgWidget = self.findChild(QWidget, "widget_7")
+        # ILogo.setParent(imgWidget)
+        '''
+        #Sensors
+        SPressure = self.findChild(QLabel, "label_110")
+        pixmapG = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\button-green.jpg')
+        pixmapR = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\button-red.jpg')
+        low_rez = QtCore.QSize(21, 21)
+        pixmapG = pixmapG.scaled(low_rez)
+        pixmapR = pixmapR.scaled(low_rez)
+        if self.sensorPressure:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+        
+        SAcceleration = self.findChild(QLabel, "label_110")
+
+        '''
         
         # Map
         m = folium.Map(
@@ -264,15 +343,171 @@ class Ui(QtWidgets.QMainWindow):
         webView.setHtml(data.getvalue().decode())
         webView.setParent(self.findChild(QWidget, "widget_9"))
         webView.setStyleSheet("border-radius: 30px;")
+    
+        t = Thread(target=self.get_data)
+        t.start()
        
-        #self.label.setStyleSheet("color: lightgreen")
-        #font.setStyle("color: red")
-		#font.setFamily("B Nazanin")
-		#font.setPointSize(24)
-		#self.temp_name.setFont(font)
-        
+        #linearProgressbar
+        self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        self.progressBar_4.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        self.progressBar_5.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        #a = MainWindow()
+        #a.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         self.show()
+
+        '''    #roundProgressBar
+        c = QtWidgets.QWidget()
+        
+        #CLASS INSTANCE
+        c.rpb = roundProgressBar()
+        #LINE WIDTH 
+        c.rpb.rpb_setLineWidth(10)
+        #LINE CAP
+        c.rpb.rpb_setLineCap('RoundCap')
+        c.rpb.rpb_setValue(45)
+        '''
+        #bar = MyWidget()
+        #rpb = bar.rpb
+        #layOut = bar.layout
+        
     #def text(self):
+    def get_data(self):
+        
+        for i in range(100):  
+            time.sleep(1) 
+            # self.progressBar_3.setValue(secrets.randbelow(100)) 
+            self.A_angular = str(secrets.randbelow(100))
+            self.A_linear = str(secrets.randbelow(100))
+
+            self.AirQuality = str(secrets.randbelow(100))
+            self.UVIndex = str(secrets.randbelow(100))
+            
+            self.CoordinateX = 37.8199286
+            self.CoordinateY = -122.4782551
+            self.Coordinate_x = str(self.CoordinateX)
+            self.Coordinate_y =  str(self.CoordinateY)
+            self.coordinate = (self.CoordinateX, self.CoordinateY)
+            
+            self.LA_angular = self.findChild(QLabel, "label_96")
+            self.LA_angular.setText(self.A_angular)
+            self.LA_linear = self.findChild(QLabel, "label_97")
+            self.LA_linear.setText(self.A_linear)
+            
+            self.LAirQuality = self.findChild(QLabel, "label_52")
+            self.LAirQuality.setText(self.AirQuality)
+            
+            self.LUVIndex = self.findChild(QLabel, "label_100")
+            self.LUVIndex.setText(self.UVIndex)
+            
+            self.LCoordinate_x = self.findChild(QLabel, "label_103")
+            self.LCoordinate_x.setText(self.Coordinate_x)
+            self.LCoordinate_y = self.findChild(QLabel, "label_105")
+            self.LCoordinate_y.setText(self.Coordinate_y)
+
+            self.Pressure_6 = self.Pressure_5
+            self.Pressure_5 = self.Pressure_4
+            self.Pressure_4 = self.Pressure_3
+            self.Pressure_3 = self.Pressure_2
+            self.Pressure_2 = self.Pressure_1
+            self.Pressure_1 = self.Pressure
+            self.Pressure = str(secrets.randbelow(100))
+
+            self.InTemp_6 = self.InTemp_5
+            self.InTemp_5 = self.InTemp_4
+            self.InTemp_4 = self.InTemp_3
+            self.InTemp_3 = self.InTemp_2
+            self.InTemp_2 = self.InTemp_1
+            self.InTemp_1 = self.InTemp
+            self.InTemp = str(secrets.randbelow(100))
+            
+            self.OutTemp_6 = self.OutTemp_5
+            self.OutTemp_5 = self.OutTemp_4
+            self.OutTemp_4 = self.OutTemp_3
+            self.OutTemp_3 = self.OutTemp_2
+            self.OutTemp_2 = self.OutTemp_1
+            self.OutTemp_1 = self.OutTemp
+            self.OutTemp = str(secrets.randbelow(100))
+            
+            self.Hiumidity_6 = self.Hiumidity_5
+            self.Hiumidity_5 = self.Hiumidity_4
+            self.Hiumidity_4 = self.Hiumidity_3
+            self.Hiumidity_3 = self.Hiumidity_2
+            self.Hiumidity_2 = self.Hiumidity_1
+            self.Hiumidity_1 = self.Hiumidity
+            self.Hiumidity = str(secrets.randbelow(100))
+
+            self.LPressure = self.findChild(QLabel, "label_2")
+            self.LPressure.setText(self.Pressure)
+            self.LPressure_1 = self.findChild(QLabel, "label_67")
+            self.LPressure_1.setText(self.Pressure_1)
+            self.LPressure_2 = self.findChild(QLabel, "label_69")
+            self.LPressure_2.setText(self.Pressure_2)
+            self.LPressure_3 = self.findChild(QLabel, "label_71")
+            self.LPressure_3.setText(self.Pressure_3)
+            self.LPressure_4 = self.findChild(QLabel, "label_73")
+            self.LPressure_4.setText(self.Pressure_4)
+            self.LPressure_5 = self.findChild(QLabel, "label_75")
+            self.LPressure_5.setText(self.Pressure_5)
+            self.LPressure_6 = self.findChild(QLabel, "label_77")
+            self.LPressure_6.setText(self.Pressure_6)
+
+            self.LInTemp_6 = self.findChild(QLabel, "label_35")
+            self.LInTemp_6.setText(self.InTemp_6)
+            self.LInTemp = self.findChild(QLabel, "label")
+            self.LInTemp.setText(self.InTemp)
+            self.LInTemp_1 = self.findChild(QLabel, "label_25")
+            self.LInTemp_1.setText(self.InTemp_1)
+            self.LInTemp_2 = self.findChild(QLabel, "label_27")
+            self.LInTemp_2.setText(self.InTemp_2)
+            self.LInTemp_3 = self.findChild(QLabel, "label_29")
+            self.LInTemp_3.setText(self.InTemp_3)
+            self.LInTemp_4 = self.findChild(QLabel, "label_31")
+            self.LInTemp_4.setText(self.InTemp_4)
+            self.LInTemp_5 = self.findChild(QLabel, "label_33")
+            self.LInTemp_5.setText(self.InTemp_5)
+            
+            self.LOutTemp = self.findChild(QLabel, "label_37")
+            self.LOutTemp.setText(self.OutTemp)
+            self.LOutTemp_1 = self.findChild(QLabel, "label_39")
+            self.LOutTemp_1.setText(self.OutTemp_1)
+            self.LOutTemp_2 = self.findChild(QLabel, "label_41")
+            self.LOutTemp_2.setText(self.OutTemp_2)
+            self.LOutTemp_3 = self.findChild(QLabel, "label_43")
+            self.LOutTemp_3.setText(self.OutTemp_3)
+            self.LOutTemp_4 = self.findChild(QLabel, "label_45")
+            self.LOutTemp_4.setText(self.OutTemp_4)
+            self.LOutTemp_5 = self.findChild(QLabel, "label_47")
+            self.LOutTemp_5.setText(self.OutTemp_5)
+            self.LOutTemp_6 = self.findChild(QLabel, "label_49")
+            self.LOutTemp_6.setText(self.OutTemp_6)
+              
+            self.LHiumidity = self.findChild(QLabel, "label_50")
+            self.LHiumidity.setText(self.Hiumidity)
+            self.LHiumidity_1 = self.findChild(QLabel, "label_54")
+            self.LHiumidity_1.setText(self.Hiumidity_1)
+            self.LHiumidity_2 = self.findChild(QLabel, "label_56")
+            self.LHiumidity_2.setText(self.Hiumidity_2)
+            self.LHiumidity_3 = self.findChild(QLabel, "label_58")
+            self.LHiumidity_3.setText(self.Hiumidity_3)
+            self.LHiumidity_4 = self.findChild(QLabel, "label_60")
+            self.LHiumidity_4.setText(self.Hiumidity_4)
+            self.LHiumidity_5 = self.findChild(QLabel, "label_62")
+            self.LHiumidity_5.setText(self.Hiumidity_5)
+            self.LHiumidity_6 = self.findChild(QLabel, "label_64")
+            self.LHiumidity_6.setText(self.Hiumidity_6)
+
+        '''
+        self.graphWidget = pg.PlotWidget()
+        hour = [1,2,3,4,5,6,7,8,9,10]
+        temperature = [30,32,34,32,33,31,29,32,35,45]
+
+        self.graphWidget.setBackground('w')
+        self.graphWidget.plot(hour, temperature)
+        a = self.findChild(QWidget, "widget_5")
+        #a.addWidget(self.graphWidget)
+        self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        '''
+
 
 class MyApp(QWidget):
     def __init__(self, webveiw):
@@ -303,7 +538,40 @@ class MyApp(QWidget):
         webview.setHtml(data.getvalue().decode())
         layout.addWidget(webview)
         self.show()
+
+# height
+'''
+class MainWindow(QtWidgets.QMainWindow):
+
+    def __init__(self, *args, **kwargs):
+        super(MainWindow, self).__init__(*args, **kwargs)
+
+        self.graphWidget = pg.PlotWidget()
+        #self.setCentralWidget(self.graphWidget)
+        self.graphWidget.resize(321, 161)
+        hour = [1,2,3,4,5,6,7,8,9,10]
+        temperature = [30,32,34,32,33,31,29,32,35,45]
+
+        self.graphWidget.setBackground('w')
+        self.graphWidget.plot(hour, temperature)
+'''
+# progressBar
+class MyWidget(QtWidgets.QWidget):
+    def __init__(self):
+        QtWidgets.QWidget.__init__(self)
         
+        #CLASS INSTANCE
+        self.rpb = roundProgressBar()
+        #LINE WIDTH 
+        self.rpb.rpb_setLineWidth(10)
+        #LINE CAP
+        self.rpb.rpb_setLineCap('RoundCap')
+        self.rpb.rpb_setValue(45)
+
+        self.layout = QtWidgets.QHBoxLayout()
+        self.layout.addWidget(self.rpb)
+        self.setLayout(self.layout)
+
 app =  QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()
@@ -311,7 +579,7 @@ app.exec_()
 
 
 if __name__ == "__main__":
-  Ui()
+  ui=Ui()
   app = QApplication(sys.argv)
   app.setStyleSheet('''
         QWidget {
@@ -320,19 +588,11 @@ if __name__ == "__main__":
     ''')
     
   myApp = MyApp()
+  
   #myApp.show()
 
   try:
     sys.exit(app.exec_())
   except SystemExit:
     print('Closing Window...')
-
-
-
-
-
-
-
-
-
 
