@@ -2395,7 +2395,7 @@ background-color:rgb(43, 35, 43);</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
+       <y>30</y>
        <width>321</width>
        <height>161</height>
       </rect>
@@ -2405,9 +2405,7 @@ background-color:rgb(43, 35, 43);</string>
 image: url(:/newPrefix/image2.jpg);
 border-color: rgb(255, 255, 255);
 border-radius: 20px;
-padding: 10px;
-padding-top: 15px;
-background-color:rgb(43, 20, 43);</string>
+</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_4">
@@ -2426,7 +2424,7 @@ border-color: rgb(255, 255, 255);
 border-radius: 30px;
 padding: 10px;
 padding-top: 15px;
-margin-bottom: 2px;
+
 
 
 </string>

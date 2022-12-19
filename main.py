@@ -303,7 +303,8 @@ class Ui(QtWidgets.QMainWindow):
 
         receivedImage = QLabel()
         pixmap = QPixmap('image1.jpg')
-        low_rez = QtCore.QSize(321, 151)
+        low_rez = QtCore.QSize(321, 200)
+        pixmap = pixmap.scaled(low_rez)
         receivedImage.setPixmap(pixmap)
         imgWidget = self.findChild(QWidget, "widget_7")
         receivedImage.setParent(imgWidget)
