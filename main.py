@@ -65,16 +65,16 @@ class Ui(QtWidgets.QMainWindow):
     Coordinate_y =  str(CoordinateY)
     coordinate = (CoordinateX, CoordinateY)
 
-    sensorPressure = True
-    sensorAcceleration = True
-    sensorTemp = True
-    sensorHumidity = True
-    sensorAirQ = True
-    sensorUV = True
+    sensorPressure = False
+    sensorAcceleration = False
+    sensorTemp = False
+    sensorHumidity = False
+    sensorAirQ = False
+    sensorUV = False
 
     def __init__(self,parent=None):
         super(Ui, self).__init__()
-        uic.loadUi('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\CAN-SAT2.ui', self)
+        uic.loadUi('CAN-SAT2.ui', self)
         
         A_angular = "12"
         A_linear = "20"
@@ -200,127 +200,162 @@ class Ui(QtWidgets.QMainWindow):
         
         #window title 
         self.iconText = self.setWindowTitle("FUM_CAN")
-        self.windowIcon = self.setWindowIcon(QtGui.QIcon('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\logo-white.jpg'))
+        self.windowIcon = self.setWindowIcon(QtGui.QIcon('logo-white.jpg'))
         
         #icon
         IPressure = self.findChild(QLabel, "label_5")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\pressure.jpg')
+        pixmap = QPixmap('pressure.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IPressure.setPixmap(pixmap)
         
         IAcceleration = self.findChild(QLabel, "label_6")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\Acceleration.jpg')
+        pixmap = QPixmap('Acceleration.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IAcceleration.setPixmap(pixmap)
         
         IInTemp = self.findChild(QLabel, "label_7")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\icons8-temperature-inside2.jpg')
+        pixmap = QPixmap('icons8-temperature-inside2.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IInTemp.setPixmap(pixmap)
         
         IIOutTemp = self.findChild(QLabel, "label_8")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\temperature-outside4.jpg')
+        pixmap = QPixmap('temperature-outside4.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IIOutTemp.setPixmap(pixmap)
         
         IHiumidity = self.findChild(QLabel, "label_9")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\humidity-.jpg')
+        pixmap = QPixmap('humidity-.jpg')
         pixmap = pixmap.scaled(low_rez)
         IHiumidity.setPixmap(pixmap)
         
         IAirQuality = self.findChild(QLabel, "label_10")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\wind2.jpg')
+        pixmap = QPixmap('wind2.jpg')
         pixmap = pixmap.scaled(low_rez)
         IAirQuality.setPixmap(pixmap)
         
         IUVIndex = self.findChild(QLabel, "label_11")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\sun.jpg')
+        pixmap = QPixmap('sun.jpg')
         pixmap = pixmap.scaled(low_rez)
         IUVIndex.setPixmap(pixmap)
         
         ISensor = self.findChild(QLabel, "label_12")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\sensor.jpg')
+        pixmap = QPixmap('sensor.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor.setPixmap(pixmap)
         
         ISensor_pressure = self.findChild(QLabel, "label_78")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\pressure.jpg')
+        pixmap = QPixmap('pressure.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         ISensor_pressure.setPixmap(pixmap)
         
         ISensor_acceleration = self.findChild(QLabel, "label_82")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\Acceleration.jpg')
+        pixmap = QPixmap('Acceleration.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_acceleration.setPixmap(pixmap)
         
         ISensor_temp = self.findChild(QLabel, "label_84")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\icons8-temperature-inside2.jpg')
+        pixmap = QPixmap('icons8-temperature-inside2.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_temp.setPixmap(pixmap)
         
         ISensor_hiumidity = self.findChild(QLabel, "label_79")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\humidity-.jpg')
+        pixmap = QPixmap('humidity-.jpg')
         low_rez = QtCore.QSize(23, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_hiumidity.setPixmap(pixmap)
         
         ISensor_air = self.findChild(QLabel, "label_83")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\wind2.jpg')
+        pixmap = QPixmap('wind2.jpg')
         low_rez = QtCore.QSize(21, 21)
         pixmap = pixmap.scaled(low_rez)
         ISensor_air.setPixmap(pixmap)
         
         ISensor_UV = self.findChild(QLabel, "label_85")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\sun.jpg')
+        pixmap = QPixmap('sun.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_UV.setPixmap(pixmap)
         
         ISatellite_1 = self.findChild(QLabel, "label_80")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\satellite.jpg')
+        pixmap = QPixmap('satellite.jpg')
         low_rez = QtCore.QSize(23, 23)
         pixmap = pixmap.scaled(low_rez)
         ISatellite_1.setPixmap(pixmap)
         
         ISatellite_2 = self.findChild(QLabel, "label_81")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\satellite.jpg')
+        pixmap = QPixmap('satellite.jpg')
         pixmap = pixmap.scaled(low_rez)
         ISatellite_2.setPixmap(pixmap)
          
         ILogo = self.findChild(QLabel, "label_107")
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\logo.jpg')
+        pixmap = QPixmap('logo.jpg')
         low_rez = QtCore.QSize(50, 45)
         pixmap = pixmap.scaled(low_rez)
         ILogo.setPixmap(pixmap)
 
         receivedImage = QLabel()
-        pixmap = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\image1.jpg')
+        pixmap = QPixmap('image1.jpg')
         low_rez = QtCore.QSize(321, 151)
         receivedImage.setPixmap(pixmap)
         imgWidget = self.findChild(QWidget, "widget_7")
         receivedImage.setParent(imgWidget)
         
         #Sensors
-        SPressure = self.findChild(QLabel, "label_110")
-        pixmapG = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\button-green.jpg')
-        pixmapR = QPixmap('D:\VSCodeFile\pythonFile\FUM-CAN-new\FUM-CAN\button-red.jpg')
-        low_rez = QtCore.QSize(21, 21)
+        pixmapG = QPixmap('button-green.jpg')
+        pixmapR = QPixmap('button-red.jpg')
+        low_rez = QtCore.QSize(18, 18)
         pixmapG = pixmapG.scaled(low_rez)
         pixmapR = pixmapR.scaled(low_rez)
+        
+
+
+        SPressure = self.findChild(QLabel, "label_110")
         if self.sensorPressure:
             SPressure.setPixmap(pixmapG)
         else:
             SPressure.setPixmap(pixmapR)
         
-        SAcceleration = self.findChild(QLabel, "label_110")
+        SPressure = self.findChild(QLabel, "label_111")
+        if self.sensorAcceleration:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+        
+        SPressure = self.findChild(QLabel, "label_112")
+        if self.sensorTemp:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+
+
+        SPressure = self.findChild(QLabel, "label_114")
+        if self.sensorHumidity:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_113")
+        if self.sensorAirQ:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_116")
+        if self.sensorUV:
+            SPressure.setPixmap(pixmapG)
+        else:
+            SPressure.setPixmap(pixmapR)
+
+
+        
 
         
         
@@ -377,6 +412,7 @@ class Ui(QtWidgets.QMainWindow):
 
             self.AirQuality = str(secrets.randbelow(100))
             self.UVIndex = str(secrets.randbelow(100))
+            # self.progressBar_3.setValue(secrets.randbelow(90))
             
             self.CoordinateX = 37.8199286
             self.CoordinateY = -122.4782551
