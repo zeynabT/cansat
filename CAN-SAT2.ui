@@ -1779,9 +1779,9 @@ margin-top: 2px;</string>
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>1</y>
+          <y>4</y>
           <width>21</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1849,7 +1849,7 @@ padding-left: 6px;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>1</y>
+          <y>4</y>
           <width>21</width>
           <height>21</height>
          </rect>
@@ -1917,9 +1917,9 @@ margin-right: 3px;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>1</y>
+          <y>3</y>
           <width>21</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1986,7 +1986,7 @@ margin-top: 2px;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>1</y>
+          <y>3</y>
           <width>21</width>
           <height>21</height>
          </rect>
@@ -2054,9 +2054,9 @@ margin-top: 2px;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>2</y>
+          <y>4</y>
           <width>21</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -2139,9 +2139,9 @@ margin-top: 2px;</string>
         <property name="geometry">
          <rect>
           <x>120</x>
-          <y>1</y>
+          <y>3</y>
           <width>21</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -2207,9 +2207,9 @@ margin-top: 2px;</string>
         <property name="geometry">
          <rect>
           <x>440</x>
-          <y>2</y>
+          <y>5</y>
           <width>21</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -2344,9 +2344,7 @@ background-color:rgb(43, 35, 43);</string>
       <string notr="true">border-color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);
 border-radius: 20px;
-padding: 10px;
-padding-top: 15px;
-background-color:rgb(43, 20, 43);</string>
+background-color:rgb(43, 35, 43);</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_3">

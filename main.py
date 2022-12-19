@@ -59,8 +59,8 @@ class Ui(QtWidgets.QMainWindow):
     AirQuality = "4"
     UVIndex = "6"
     
-    CoordinateX = 37.8199286
-    CoordinateY = -122.4782551
+    CoordinateX = 36.31130898586006 
+    CoordinateY = 59.526375931025
     Coordinate_x = str(CoordinateX)
     Coordinate_y =  str(CoordinateY)
     coordinate = (CoordinateX, CoordinateY)
@@ -71,6 +71,8 @@ class Ui(QtWidgets.QMainWindow):
     sensorHumidity = False
     sensorAirQ = False
     sensorUV = False
+    groundStationConnection = False
+    satelliteConnection = False
 
     def __init__(self,parent=None):
         super(Ui, self).__init__()
@@ -113,8 +115,8 @@ class Ui(QtWidgets.QMainWindow):
         AirQuality = "4"
         UVIndex = "6"
         
-        CoordinateX = 37.8199286
-        CoordinateY = -122.4782551
+        CoordinateX = 36.31130898586006
+        CoordinateY = 59.526375931025
         Coordinate_x = str(CoordinateX)
         Coordinate_y =  str(CoordinateY)
         coordinate = (CoordinateX, CoordinateY)
@@ -195,8 +197,10 @@ class Ui(QtWidgets.QMainWindow):
         self.Coordinate_y = self.findChild(QLabel, "label_105")
         self.Coordinate_y.setText(Coordinate_y)
 
+        #todo 
         self.airLabel = self.findChild(QLabel, "label_103")
         self.airLabel.setText("Good")
+
         
         #window title 
         self.iconText = self.setWindowTitle("FUM_CAN")
@@ -355,6 +359,17 @@ class Ui(QtWidgets.QMainWindow):
         else:
             SPressure.setPixmap(pixmapR)
 
+        SgroundStationConnection = self.findChild(QLabel, "label_117")
+        if self.sensorAirQ:
+            SgroundStationConnection.setPixmap(pixmapG)
+        else:
+            SgroundStationConnection.setPixmap(pixmapR)
+
+        SsatelliteConnection = self.findChild(QLabel, "label_118")
+        if self.sensorAirQ:
+            SsatelliteConnection.setPixmap(pixmapG)
+        else:
+            SsatelliteConnection.setPixmap(pixmapR)
 
         
 
@@ -382,6 +397,10 @@ class Ui(QtWidgets.QMainWindow):
         self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_4.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_5.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+
+        #Battery
+        self.progressBar_2.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        
         # height
         height = MainWindow()
         height.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
@@ -415,8 +434,8 @@ class Ui(QtWidgets.QMainWindow):
             self.UVIndex = str(secrets.randbelow(100))
             # self.progressBar_3.setValue(secrets.randbelow(90))
             
-            self.CoordinateX = 37.8199286
-            self.CoordinateY = -122.4782551
+            self.CoordinateX = 36.31130898586006
+            self.CoordinateY = 59.526375931025
             self.Coordinate_x = str(self.CoordinateX)
             self.Coordinate_y =  str(self.CoordinateY)
             self.coordinate = (self.CoordinateX, self.CoordinateY)
@@ -581,8 +600,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.graphWidget = pg.PlotWidget()
         #self.setCentralWidget(self.graphWidget)
         self.graphWidget.resize(321, 161)
-        hour = [1,2,3,4,5,6,7,8,9,10]
-        temperature = [30,32,34,32,33,31,29,32,35,45]
+        hour = [1,2,3,4,5,6,7,8,9]
+        temperature = [30,32,34,32,33,31,29,32,35]
 
 #       self.graphWidget.setBackground('w')
 #       self.graphWidget.plot(hour, temperature)
