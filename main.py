@@ -372,9 +372,6 @@ class Ui(QtWidgets.QMainWindow):
             SsatelliteConnection.setPixmap(pixmapR)
 
         
-
-        
-        
         # Map
         m = folium.Map(
         	tiles='Stamen Terrain',
@@ -402,13 +399,21 @@ class Ui(QtWidgets.QMainWindow):
         self.progressBar_2.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         
         # height
-        height = MainWindow()
-        height.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        # height = MainWindow()
+        # 
+        self.graphWidget = pg.PlotWidget()
+        #self.setCentralWidget(self.graphWidget)
+        # 
+        hour = [1,2,3,4,5,6,7,8,9]
+        temperature = [1,2,3,4,5,6,7,8,9]
+        self.graphWidget.setBackground('w')
+        self.graphWidget.plot(hour, temperature)
+        self.graphWidget.scale(321, 161)
+        self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         self.show()
 
-        '''    #roundProgressBar
+        ''' #roundProgressBar
         c = QtWidgets.QWidget()
-        
         #CLASS INSTANCE
         c.rpb = roundProgressBar()
         #LINE WIDTH 
@@ -421,10 +426,9 @@ class Ui(QtWidgets.QMainWindow):
         #rpb = bar.rpb
         #layOut = bar.layout
         
-    #def text(self):
     def get_data(self):
         
-        for i in range(100):  
+        for i in range(200):  
             time.sleep(1) 
             # self.progressBar_3.setValue(secrets.randbelow(100)) 
             self.A_angular = str(secrets.randbelow(100))
@@ -549,18 +553,20 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_6.setText(self.Hiumidity_6)
 
         
-        self.graphWidget = pg.PlotWidget()
-        hour = [1,2,3,4,5,6,7,8,9,10]
-        temperature = [30,32,34,32,33,31,29,32,35,45]
+        # self.graphWidget = pg.PlotWidget()
+        # hour = [1,2,3,4,5,6,7,8,9,10]
+        # temperature = [1,2,3,4,5,1,2,3,4,5]
 
-        self.graphWidget.setBackground('w')
-        self.graphWidget.plot(hour, temperature)
-        a = self.findChild(QWidget, "widget_5")
-        a.addWidget(self.graphWidget)
-        self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        # self.graphWidget.setBackground('w')
+        # self.graphWidget.plot(hour, temperature)
+
+        # self.graphWidget.scale(100,100)
+        # a = self.findChild(QWidget, "widget_5")
+        # a.addWidget(self.graphWidget)
+        # self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         
 
-
+# map
 class MyApp(QWidget):
     def __init__(self, webveiw):
         self.webview = webveiw
@@ -592,19 +598,18 @@ class MyApp(QWidget):
         self.show()
 
 # height
-class MainWindow(QtWidgets.QMainWindow):
+# class MainWindow(QtWidgets.QMainWindow):
 
-    def __init__(self, *args, **kwargs):
-        super(MainWindow, self).__init__(*args, **kwargs)
+#     def __init__(self, *args, **kwargs):
+#         super(MainWindow, self).__init__(*args, **kwargs)
 
-        self.graphWidget = pg.PlotWidget()
-        #self.setCentralWidget(self.graphWidget)
-        self.graphWidget.resize(321, 161)
-        hour = [1,2,3,4,5,6,7,8,9]
-        temperature = [30,32,34,32,33,31,29,32,35]
-
-#       self.graphWidget.setBackground('w')
-#       self.graphWidget.plot(hour, temperature)
+#         self.graphWidget = pg.PlotWidget()
+#         #self.setCentralWidget(self.graphWidget)
+#         self.graphWidget.scale(321, 161)
+#         hour = [1,2,3,4,5,6,7,8,9]
+#         temperature = [1,2,3,4,5,6,7,8,9]
+#         self.graphWidget.setBackground('w')
+#         self.graphWidget.plot(hour, temperature)
  
 #progressBar
 class MyWidget(QtWidgets.QWidget):

@@ -2034,7 +2034,7 @@ margin-top: 3px;</string>
        <widget class="QLabel" name="label_89">
         <property name="geometry">
          <rect>
-          <x>60</x>
+          <x>280</x>
           <y>5</y>
           <width>51</width>
           <height>21</height>
@@ -2235,28 +2235,6 @@ margin-top: 2px;</string>
     <property name="styleSheet">
      <string notr="true">background-color:rgb(0, 0, 0);</string>
     </property>
-    <widget class="QLabel" name="label_106">
-     <property name="geometry">
-      <rect>
-       <x>980</x>
-       <y>10</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:rgb(0, 0, 0);
-border-color:rgb(0, 85, 255);
-border-radius: 10px ;
-border-width: 7rem;
-border: 1px solid  rgb(0, 85, 255);
-font: 10pt &quot;Roboto&quot; ;
-</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; color:#0055ff;&quot;&gt;full log&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_107">
      <property name="geometry">
       <rect>
@@ -2344,7 +2322,7 @@ background-color:rgb(43, 35, 43);</string>
       <string notr="true">border-color: rgb(255, 255, 255);
 border-color: rgb(255, 255, 255);
 border-radius: 20px;
-background-color:rgb(43, 35, 43);</string>
+</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_3">

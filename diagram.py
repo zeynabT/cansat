@@ -12,13 +12,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.graphWidget = pg.PlotWidget()
         self.setCentralWidget(self.graphWidget)
         
-
         hour = [1,2,3,4,4]
         temperature = [30,32,34,32,33]
 
         self.graphWidget.setBackground('w')
         self.graphWidget.plot(hour, temperature)
-        self.graphWidget.setGeometry(100, 100, 321, 161)
+        self.graphWidget.scale(50,50)
+        # self.graphWidget.setGeometry(100, 100, 321, 161)
         #self.centralWidget().resize(321, 161)
         #self.graphWidget.set(321, 161)
         #.setGeometry(100, 100, 600, 500)
