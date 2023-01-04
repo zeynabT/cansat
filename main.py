@@ -213,7 +213,7 @@ class Ui(QtWidgets.QMainWindow):
         self.label_101.setFont(QFont('Arial', 10))
         self.airLabel.setText(Good)
 
-        self.airLabel = self.findChild(QLabel, "label_102")
+        self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont('Arial', 10))
 
 
@@ -452,10 +452,44 @@ class Ui(QtWidgets.QMainWindow):
             self.A_angular = str(secrets.randbelow(100))
             self.A_linear = str(secrets.randbelow(100))
 
-            self.AirQuality = str(secrets.randbelow(100))
+            AirQualityValue = secrets.randbelow(100)
+            self.AirQuality = str(AirQualityValue)
+            self.airLabel = self.findChild(QLabel, "label_101")
+            self.label_101.setFont(QFont('Arial', 10))
+            if AirQualityValue < 17:
+                self.airLabel.setText("Very Good")
+            elif AirQualityValue < 33:
+                self.airLabel.setText("Good")
+            elif AirQualityValue < 49:
+                self.airLabel.setText("Fair")
+            elif AirQualityValue < 65:
+                self.airLabel.setText("Poor")
+            elif AirQualityValue < 81:
+                self.airLabel.setText("Very Poor")
+            elif AirQualityValue < 101:
+                self.airLabel.setText("Hazardous")
+
+
+            UVIndexValue = secrets.randbelow(100)
+            self.UVIndex = str(UVIndexValue)
+            self.UVLabel = self.findChild(QLabel, "label_102")  
+            self.label_102.setFont(QFont('Arial', 10))
+            if AirQualityValue < 17:
+                self.UVLabel.setText("Very Good")
+            elif AirQualityValue < 33:
+                self.UVLabel.setText("Good")
+            elif AirQualityValue < 49:
+                self.UVLabel.setText("Fair")
+            elif AirQualityValue < 65:
+                self.UVLabel.setText("Poor")
+            elif AirQualityValue < 81:
+                self.UVLabel.setText("Very Poor")
+            elif AirQualityValue < 101:
+                self.UVLabel.setText("Hazardous")
             
-            #self.airLabel.setText(Heigh)
-            self.UVIndex = str(secrets.randbelow(100))
+
+
+            
             # self.progressBar_3.setValue(secrets.randbelow(90))
             
             self.CoordinateX = 36.31130898586006
