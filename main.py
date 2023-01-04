@@ -58,7 +58,7 @@ class Ui(QtWidgets.QMainWindow):
 
     AirQuality = "4"
     UVIndex = "6"
-    
+
     CoordinateX = 36.31130898586006 
     CoordinateY = 59.526375931025
     Coordinate_x = str(CoordinateX)
@@ -120,7 +120,18 @@ class Ui(QtWidgets.QMainWindow):
         Coordinate_x = str(CoordinateX)
         Coordinate_y =  str(CoordinateY)
         coordinate = (CoordinateX, CoordinateY)
+
+        Good = "Good"
+        Low = "Low"
+        Moderate = "Moderate"
+        Heigh = "Heigh"
+        VeryHeigh = "Very Heigh"
+        Extreme = "Extreme"
+        #Good = fontstyle.apply('good', 'bold/Italic/red/INVERSE/2UNDERLINE/GREEN_BG')
+        #Good = tkFont.Font(family="Helvetica",size=36,weight="bold")
+        #print(Good)
         
+
         # todo make label for every int
         self.LA_angular = self.findChild(QLabel, "label_96")
         self.LA_angular.setText(A_angular)
@@ -198,8 +209,15 @@ class Ui(QtWidgets.QMainWindow):
         self.Coordinate_y.setText(Coordinate_y)
 
         #todo 
-        self.airLabel = self.findChild(QLabel, "label_103")
-        self.airLabel.setText("Good")
+        self.airLabel = self.findChild(QLabel, "label_101")
+        self.label_101.setFont(QFont('Arial', 10))
+        self.airLabel.setText(Good)
+
+        self.airLabel = self.findChild(QLabel, "label_102")
+        self.label_102.setFont(QFont('Arial', 10))
+
+
+        #self.airLabel.setText(Heigh)
 
         
         #window title 
@@ -435,6 +453,8 @@ class Ui(QtWidgets.QMainWindow):
             self.A_linear = str(secrets.randbelow(100))
 
             self.AirQuality = str(secrets.randbelow(100))
+            
+            #self.airLabel.setText(Heigh)
             self.UVIndex = str(secrets.randbelow(100))
             # self.progressBar_3.setValue(secrets.randbelow(90))
             
