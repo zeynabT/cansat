@@ -17,9 +17,70 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView # pip install PyQtWebEngine
 import time
 from threading import Thread
 import secrets
+import sys
+import threading
 
 #from PySide2 import QtCore, QtWidgets, QtGui
 #from PySide2extn.RoundProgressBar import roundProgressBar
+class PercentageWorker(QtCore.QObject):
+    started = QtCore.pyqtSignal()
+    finished = QtCore.pyqtSignal()
+    percentageChanged = QtCore.pyqtSignal(int)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._percentage = 0
+
+    @property
+    def percentage(self):
+        return self._percentage
+
+    @percentage.setter
+    def percentage(self, value):
+        if self._percentage == value:
+            return
+        self._percentage = value
+        self.percentageChanged.emit(self.percentage)
+
+    def start(self):
+        self.started.emit()
+
+    def finish(self):
+        self.finished.emit()
+
+
+
+
+class FakeWorker:
+    def start(self):
+        pass
+
+    def finish(self):
+        pass
+
+    @property
+    def percentage(self):
+        return 0
+
+    @percentage.setter
+    def percentage(self, value):
+        pass
+
+
+import time
+
+
+def long_running_function(foo, baz="1", worker=None):
+    if worker is None:
+        worker = FakeWorker()
+    worker.start()
+    while worker.percentage < 100:
+        worker.percentage =secrets.randbelow(99)
+        time.sleep(1)
+        worker.finish()
+
+
+
 
 class Ui(QtWidgets.QMainWindow):
     A_angular = "12"
@@ -428,6 +489,7 @@ class Ui(QtWidgets.QMainWindow):
         self.graphWidget.plot(hour, temperature)
         self.graphWidget.scale(321, 161)
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        self.launch()
         self.show()
 
         ''' #roundProgressBar
@@ -443,7 +505,17 @@ class Ui(QtWidgets.QMainWindow):
         #bar = MyWidget()
         #rpb = bar.rpb
         #layOut = bar.layout
-        
+    def launch(self):
+        worker = PercentageWorker()
+        worker.percentageChanged.connect(self.progressBar_4.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker),
+            daemon=True,
+        ).start()
+
+
     def get_data(self):
         
         for i in range(200):  
@@ -605,6 +677,12 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_5.setText(self.Hiumidity_5)
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
+            print("end ##############")
+            # self.progressBar_4.per(secrets.randbelow(95)+1)
+
+
+    
+
 
         
         # self.graphWidget = pg.PlotWidget()
