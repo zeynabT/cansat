@@ -1,9 +1,6 @@
-
 import sys
 import threading
-
 from PyQt5 import QtCore, QtWidgets
-
 
 class PercentageWorker(QtCore.QObject):
     started = QtCore.pyqtSignal()
@@ -50,14 +47,12 @@ class FakeWorker:
 
 import time
 
-
 def long_running_function(foo, baz="1", worker=None):
     if worker is None:
         worker = FakeWorker()
     worker.start()
     while worker.percentage < 100:
         worker.percentage += 1
-        print(foo, baz)
         time.sleep(1)
         worker.finish()
 
