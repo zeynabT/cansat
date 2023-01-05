@@ -30,6 +30,7 @@ class PercentageWorker(QtCore.QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._percentage = 0
+        value = 0
 
     @property
     def percentage(self):
@@ -47,7 +48,6 @@ class PercentageWorker(QtCore.QObject):
 
     def finish(self):
         self.finished.emit()
-
 
 
 
@@ -75,7 +75,8 @@ def long_running_function(foo, baz="1", worker=None):
         worker = FakeWorker()
     worker.start()
     while worker.percentage < 100:
-        worker.percentage =secrets.randbelow(99)
+        value = secrets.randbelow(99) # initializing progress bar
+        worker.percentage = value
         time.sleep(1)
         worker.finish()
 
@@ -134,6 +135,7 @@ class Ui(QtWidgets.QMainWindow):
     sensorUV = False
     groundStationConnection = False
     satelliteConnection = False
+    dataOfCamera = False
 
     def __init__(self,parent=None):
         super(Ui, self).__init__()
@@ -175,6 +177,8 @@ class Ui(QtWidgets.QMainWindow):
 
         AirQuality = "4"
         UVIndex = "6"
+        # progressValue = secrets.randbelow(100)
+        # print(progressValue)
         
         CoordinateX = 36.31130898586006
         CoordinateY = 59.526375931025
@@ -188,9 +192,6 @@ class Ui(QtWidgets.QMainWindow):
         Heigh = "Heigh"
         VeryHeigh = "Very Heigh"
         Extreme = "Extreme"
-        #Good = fontstyle.apply('good', 'bold/Italic/red/INVERSE/2UNDERLINE/GREEN_BG')
-        #Good = tkFont.Font(family="Helvetica",size=36,weight="bold")
-        #print(Good)
         
 
         # todo make label for every int
@@ -257,6 +258,8 @@ class Ui(QtWidgets.QMainWindow):
         self.LHiumidity_5.setText(Hiumidity_5)
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         self.LHiumidity_6.setText(Hiumidity_6)
+
+        self.alarm = self.findChild(QLabel, "label_109") # todo
         
         self.LAirQuality = self.findChild(QLabel, "label_52")
         self.LAirQuality.setText(AirQuality)
@@ -269,16 +272,12 @@ class Ui(QtWidgets.QMainWindow):
         self.Coordinate_y = self.findChild(QLabel, "label_105")
         self.Coordinate_y.setText(Coordinate_y)
 
-        #todo 
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
         self.airLabel.setText(Good)
 
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont('Arial', 10))
-
-
-        #self.airLabel.setText(Heigh)
 
         
         #window title 
@@ -398,7 +397,6 @@ class Ui(QtWidgets.QMainWindow):
         low_rez = QtCore.QSize(18, 18)
         pixmapG = pixmapG.scaled(low_rez)
         pixmapR = pixmapR.scaled(low_rez)
-        
 
 
         SPressure = self.findChild(QLabel, "label_110")
@@ -473,16 +471,14 @@ class Ui(QtWidgets.QMainWindow):
         self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_4.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         self.progressBar_5.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        
 
         #Battery
         self.progressBar_2.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
         
         # height
         # height = MainWindow()
-        # 
         self.graphWidget = pg.PlotWidget()
-        #self.setCentralWidget(self.graphWidget)
-        # 
         hour = [1,2,3,4,5,6,7,8,9]
         temperature = [1,2,3,4,5,6,7,8,9]
         self.graphWidget.setBackground('w')
@@ -502,9 +498,7 @@ class Ui(QtWidgets.QMainWindow):
         c.rpb.rpb_setLineCap('RoundCap')
         c.rpb.rpb_setValue(45)
         '''
-        #bar = MyWidget()
-        #rpb = bar.rpb
-        #layOut = bar.layout
+
     def launch(self):
         worker = PercentageWorker()
         worker.percentageChanged.connect(self.progressBar_4.setValue)
@@ -516,14 +510,14 @@ class Ui(QtWidgets.QMainWindow):
         ).start()
 
 
-    def get_data(self):
+    def get_data(self):  
         
         for i in range(200):  
             time.sleep(1) 
-            # self.progressBar_3.setValue(secrets.randbelow(100)) 
             self.A_angular = str(secrets.randbelow(100))
             self.A_linear = str(secrets.randbelow(100))
 
+            #Discription label for UV & air quality 
             AirQualityValue = secrets.randbelow(100)
             self.AirQuality = str(AirQualityValue)
             self.airLabel = self.findChild(QLabel, "label_101")
@@ -540,30 +534,29 @@ class Ui(QtWidgets.QMainWindow):
                 self.airLabel.setText("Very Poor")
             elif AirQualityValue < 101:
                 self.airLabel.setText("Hazardous")
+            
 
 
             UVIndexValue = secrets.randbelow(100)
             self.UVIndex = str(UVIndexValue)
             self.UVLabel = self.findChild(QLabel, "label_102")  
             self.label_102.setFont(QFont('Arial', 10))
-            if AirQualityValue < 17:
+            if UVIndexValue < 17:
                 self.UVLabel.setText("Very Good")
-            elif AirQualityValue < 33:
+            elif UVIndexValue < 33:
                 self.UVLabel.setText("Good")
-            elif AirQualityValue < 49:
+            elif UVIndexValue < 49:
                 self.UVLabel.setText("Fair")
-            elif AirQualityValue < 65:
+            elif UVIndexValue < 65:
                 self.UVLabel.setText("Poor")
-            elif AirQualityValue < 81:
+            elif UVIndexValue < 81:
                 self.UVLabel.setText("Very Poor")
-            elif AirQualityValue < 101:
+            elif UVIndexValue < 101:
                 self.UVLabel.setText("Hazardous")
             
-
-
+            #self.progressBar_5.setValue(UVIndexValue)
             
-            # self.progressBar_3.setValue(secrets.randbelow(90))
-            
+
             self.CoordinateX = 36.31130898586006
             self.CoordinateY = 59.526375931025
             self.Coordinate_x = str(self.CoordinateX)
@@ -677,14 +670,15 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_5.setText(self.Hiumidity_5)
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
-            print("end ##############")
-            # self.progressBar_4.per(secrets.randbelow(95)+1)
+
+            self.alarm = self.findChild(QLabel, "label_109")
+            self.label_109.setFont(QFont('Arial', 10))
+            if self.dataOfCamera == False :
+                self.alarm.setText("Ground station can not receive any data from camera")
+
 
 
     
-
-
-        
         # self.graphWidget = pg.PlotWidget()
         # hour = [1,2,3,4,5,6,7,8,9,10]
         # temperature = [1,2,3,4,5,1,2,3,4,5]
