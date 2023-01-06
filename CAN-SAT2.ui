@@ -2397,14 +2397,18 @@ image: url(:/newPrefix/logo.jpg);</string>
     <widget class="QLabel" name="label_108">
      <property name="geometry">
       <rect>
-       <x>156</x>
-       <y>5</y>
-       <width>41</width>
-       <height>21</height>
+       <x>160</x>
+       <y>0</y>
+       <width>51</width>
+       <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid  rgb(255, 255, 255);
+margin-bottom: 1px;</string>
+     </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Alarm:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_109">
@@ -2412,12 +2416,17 @@ image: url(:/newPrefix/logo.jpg);</string>
       <rect>
        <x>206</x>
        <y>-1</y>
-       <width>771</width>
+       <width>471</width>
        <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid  rgb(255, 255, 255);
+margin-top: 1px;
+</string>
+     </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:9pt; color:#ffffff;&quot;&gt;Lorem ipsum donor thing that makes it a simple and adorable text that anyone...&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
     <widget class="QProgressBar" name="progressBar_2">

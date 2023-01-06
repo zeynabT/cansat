@@ -259,7 +259,15 @@ class Ui(QtWidgets.QMainWindow):
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         self.LHiumidity_6.setText(Hiumidity_6)
 
-        self.alarm = self.findChild(QLabel, "label_109") # todo
+        # alarm
+        self.alarmText = self.findChild(QLabel, "label_109") 
+        self.label_109.setFont(QFont('Arial', 11))
+        self.alarmText.setStyleSheet("color: rgb(175, 0,3)")
+
+        self.alarm = self.findChild(QLabel, "label_108") 
+        self.label_108.setFont(QFont('Arial', 11))
+        self.alarm.setStyleSheet("color: rgb(175, 0,3)")
+
         
         self.LAirQuality = self.findChild(QLabel, "label_52")
         self.LAirQuality.setText(AirQuality)
@@ -274,7 +282,6 @@ class Ui(QtWidgets.QMainWindow):
 
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
-        self.airLabel.setText(Good)
 
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont('Arial', 10))
@@ -534,13 +541,18 @@ class Ui(QtWidgets.QMainWindow):
                 self.airLabel.setText("Very Poor")
             elif AirQualityValue < 101:
                 self.airLabel.setText("Hazardous")
-            
 
+            self.alarmText = self.findChild(QLabel, "label_109") 
+            self.alarm = self.findChild(QLabel, "label_108") 
+            if self.dataOfCamera == False:
+                self.alarmText.setText("Ground station can not receive any data from camera")
+                self.alarm.setText("Alarm:")
 
             UVIndexValue = secrets.randbelow(100)
             self.UVIndex = str(UVIndexValue)
             self.UVLabel = self.findChild(QLabel, "label_102")  
-            self.label_102.setFont(QFont('Arial', 10))
+            self.label_102.setFont(QFont("Arial [red]", 10))
+            
             if UVIndexValue < 17:
                 self.UVLabel.setText("Very Good")
             elif UVIndexValue < 33:
@@ -671,10 +683,10 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
 
-            self.alarm = self.findChild(QLabel, "label_109")
-            self.label_109.setFont(QFont('Arial', 10))
-            if self.dataOfCamera == False :
-                self.alarm.setText("Ground station can not receive any data from camera")
+            #self.alarm = self.findChild(QLabel, "label_109")
+            #self.label_109.setFont(QFont('Arial', 10))
+            #if self.dataOfCamera == False :
+            #self.alarm.setText("Ground station can not receive any data from camera")
 
 
 
