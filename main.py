@@ -3,17 +3,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-#from PySide2 import QtCore, QtWidgets, QtGui
-#from PySide2extn.RoundProgressBar import roundProgressBar
-#from PySide6 import QtCore
 import sys
 from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
 import os
 import io
-import folium # pip install folium
+import folium 
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout
-from PyQt5.QtWebEngineWidgets import QWebEngineView # pip install PyQtWebEngine
+from PyQt5.QtWebEngineWidgets import QWebEngineView 
 import time
 from threading import Thread
 import secrets
