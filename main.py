@@ -20,6 +20,11 @@ import secrets
 import sys
 import threading
 
+import os
+from PyQt5 import QtCore, QtMultimedia
+import time
+CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+
 #from PySide2 import QtCore, QtWidgets, QtGui
 #from PySide2extn.RoundProgressBar import roundProgressBar
 class PercentageWorker(QtCore.QObject):
@@ -50,7 +55,6 @@ class PercentageWorker(QtCore.QObject):
         self.finished.emit()
 
 
-
 class FakeWorker:
     def start(self):
         pass
@@ -67,9 +71,6 @@ class FakeWorker:
         pass
 
 
-import time
-
-
 def long_running_function(foo, baz="1", worker=None):
     if worker is None:
         worker = FakeWorker()
@@ -80,6 +81,17 @@ def long_running_function(foo, baz="1", worker=None):
         time.sleep(1)
         worker.finish()
 
+
+def sound():
+
+    filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+    app2 = QtCore.QCoreApplication(sys.argv)
+    player = QtMultimedia.QMediaPlayer()
+    url = QtCore.QUrl.fromLocalFile(filename)
+    player.setMedia(QtMultimedia.QMediaContent(url))
+    player.play()
+
+    sys.exit(app2.exec_())
 
 
 
@@ -194,7 +206,7 @@ class Ui(QtWidgets.QMainWindow):
         Extreme = "Extreme"
         
 
-        # todo make label for every int
+        # setting label for every int
         self.LA_angular = self.findChild(QLabel, "label_96")
         self.LA_angular.setText(A_angular)
         self.LA_linear = self.findChild(QLabel, "label_97")
@@ -286,7 +298,6 @@ class Ui(QtWidgets.QMainWindow):
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont('Arial', 10))
 
-        
         #window title 
         self.iconText = self.setWindowTitle("FUM_CAN")
         self.windowIcon = self.setWindowIcon(QtGui.QIcon('logo-white.jpg'))
@@ -454,7 +465,18 @@ class Ui(QtWidgets.QMainWindow):
             SsatelliteConnection.setPixmap(pixmapG)
         else:
             SsatelliteConnection.setPixmap(pixmapR)
-
+        
+        # sound 
+        filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+        # app2 = QtCore.QCoreApplication(sys.argv)
+        player = QtMultimedia.QMediaPlayer()
+        url = QtCore.QUrl.fromLocalFile(filename)
+        player.setMedia(QtMultimedia.QMediaContent(url))
+        # player.play()
+        # time.sleep(2)
+        # QtCore.QCoreApplication.quit()
+        # sys.exit(app2.exec_())
+        #sound()
         
         # Map
         m = folium.Map(
@@ -472,7 +494,9 @@ class Ui(QtWidgets.QMainWindow):
         webView.setStyleSheet("border-radius: 30px;")
     
         t = Thread(target=self.get_data)
+        t2 = Thread(target=self.get_data2)
         t.start()
+        t2.start()
        
         #linearProgressbar
         self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
@@ -516,13 +540,30 @@ class Ui(QtWidgets.QMainWindow):
             daemon=True,
         ).start()
 
-
-    def get_data(self):  
+    def get_data2(self):  
         
         for i in range(200):  
             time.sleep(1) 
             self.A_angular = str(secrets.randbelow(100))
             self.A_linear = str(secrets.randbelow(100))
+            if i == 5 :
+                            
+                # filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+                # app2 = QtCore.QCoreApplication(sys.argv)
+                # player = QtMultimedia.QMediaPlayer()
+                # url = QtCore.QUrl.fromLocalFile(filename)
+                # player.setMedia(QtMultimedia.QMediaContent(url))
+                # player.play()
+                # sys.exit(app2.exec_())
+                self.t2.quit()
+
+    
+    def get_data(self):  
+        
+        for i in range(200):  
+            time.sleep(1) 
+            # self.A_angular = str(secrets.randbelow(100))
+            # self.A_linear = str(secrets.randbelow(100))
 
             #Discription label for UV & air quality 
             AirQualityValue = secrets.randbelow(100)
@@ -567,7 +608,6 @@ class Ui(QtWidgets.QMainWindow):
                 self.UVLabel.setText("Hazardous")
             
             #self.progressBar_5.setValue(UVIndexValue)
-            
 
             self.CoordinateX = 36.31130898586006
             self.CoordinateY = 59.526375931025
@@ -683,13 +723,6 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
 
-            #self.alarm = self.findChild(QLabel, "label_109")
-            #self.label_109.setFont(QFont('Arial', 10))
-            #if self.dataOfCamera == False :
-            #self.alarm.setText("Ground station can not receive any data from camera")
-
-
-
     
         # self.graphWidget = pg.PlotWidget()
         # hour = [1,2,3,4,5,6,7,8,9,10]
@@ -766,13 +799,10 @@ class MyWidget(QtWidgets.QWidget):
          self.layout.addWidget(self.rpb)
          self.setLayout(self.layout)
 
-# app =  QtWidgets.QApplication(sys.argv)
-# window = Ui()
-# app.exec_()
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
     ui=Ui()
     app.exec_()
     # app.setStyleSheet('''
@@ -781,12 +811,3 @@ if __name__ == "__main__":
     #     }
     # ''')
     
-#   myApp = MyApp()
-  
-#   #myApp.show()
-
-#   try:
-#     sys.exit(app.exec_())
-#   except SystemExit:
-#     print('Closing Window...')
-

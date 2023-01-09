@@ -2404,7 +2404,7 @@ image: url(:/newPrefix/logo.jpg);</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid  rgb(255, 255, 255);
+      <string notr="true">
 margin-bottom: 1px;</string>
      </property>
      <property name="text">
@@ -2421,7 +2421,7 @@ margin-bottom: 1px;</string>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">border: 1px solid  rgb(255, 255, 255);
+      <string notr="true">
 margin-top: 1px;
 </string>
      </property>
