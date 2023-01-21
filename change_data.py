@@ -3,7 +3,7 @@ import time
 import secrets
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtGui import QFont
-import config
+import config 
 
 
 def get_data(self):

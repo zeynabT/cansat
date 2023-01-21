@@ -53,7 +53,6 @@ def long_running_function(who, baz="0", worker=None):
     if worker is None:
         worker = PWorker()
     worker.start()
-    print (who,baz)
     while worker.percentage < 100:
         value = secrets.randbelow(99)  # initializing progress bar
         worker.percentage = value
