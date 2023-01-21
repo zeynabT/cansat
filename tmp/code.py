@@ -117,3 +117,57 @@
 
         # self.LUVIndex = self.findChild(QLabel, "label_100")
         # self.LUVIndex.setText(self.UVIndex)
+
+
+
+        # self.graphWidget = pg.PlotWidget()
+        # hour = [1,2,3,4,5,6,7,8,9,10]
+        # temperature = [1,2,3,4,5,1,2,3,4,5]
+
+        # self.graphWidget.setBackground('w')
+        # self.graphWidget.plot(hour, temperature)
+
+        # self.graphWidget.scale(100,100)
+        # a = self.findChild(QWidget, "widget_5")
+        # a.addWidget(self.graphWidget)
+        # self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+
+
+        # create list for y-axis
+        # y1 = [5, 5, 7, 10, 3, 8, 9, 1, 6, 2]
+
+        # # create horizontal list i.e x-axis
+        # x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+        # # create pyqt5graph bar graph item
+        # # with width = 0.6
+        # # with bar colors = green
+        # bargraph1 = pg.BarGraphItem(x = x, height = y1, width = 0.6, brush ='g')
+
+        # add item to plot window
+        # adding bargraph item to the window
+        # self.graphWidget.addItem(bargraph1)
+        # 321, 161
+        # vb = self.graphWidget.getViewBox()
+        # vb.setAspectLocked(lock=False)
+        # vb.setAutoVisible(y=0.5)
+        # vb.enableAutoRange(axis='y', enable=True)
+
+# alarm
+    # def get_data(self):
+
+    #     for i in range(200):
+    #         time.sleep(1)
+
+    #         self.A_angular = str(secrets.randbelow(100))
+    #         self.A_linear = str(secrets.randbelow(100))
+    #         if i == 5 :
+
+    #             # filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
+    #             # app2 = QtCore.QCoreApplication(sys.argv)
+    #             # player = QtMultimedia.QMediaPlayer()
+    #             # url = QtCore.QUrl.fromLocalFile(filename)
+    #             # player.setMedia(QtMultimedia.QMediaContent(url))
+    #             # player.play()
+    #             # sys.exit(app2.exec_())
+    #             self.t2.quit()
