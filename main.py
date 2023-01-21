@@ -79,7 +79,7 @@ def long_running_function(foo, baz="1", worker=None):
 
 def sound():
 
-    filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+    filename = os.path.join(CURRENT_DIR, "red_danger_alarm_2_2.mp3")
     app2 = QtCore.QCoreApplication(sys.argv)
     player = QtMultimedia.QMediaPlayer()
     url = QtCore.QUrl.fromLocalFile(filename)
