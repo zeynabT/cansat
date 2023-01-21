@@ -386,9 +386,9 @@ class Ui(QtWidgets.QMainWindow):
         webView.setStyleSheet("border-radius: 30px;")
 
         t = Thread(target=self.get_data)
-        t2 = Thread(target=self.get_data2)
+        # t2 = Thread(target=self.get_data2)
         t.start()
-        t2.start()
+        # t2.start()
        
         #linearProgressbar
         self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
@@ -439,31 +439,41 @@ class Ui(QtWidgets.QMainWindow):
         self.launch()
         self.show()
 
-        ''' #roundProgressBar
-        c = QtWidgets.QWidget()
-        #CLASS INSTANCE
-        c.rpb = roundProgressBar()
-        #LINE WIDTH 
-        c.rpb.rpb_setLineWidth(10)
-        #LINE CAP
-        c.rpb.rpb_setLineCap('RoundCap')
-        c.rpb.rpb_setValue(45)
-        '''
+
 
     def launch(self):
-        worker = ProgressWorker()
-        worker.percentageChanged.connect(self.progressBar_4.setValue)
+        # progressBar_3
+        worker_3 = ProgressWorker()
+        worker_3.value_change.connect(self.progressBar_3.setValue)
         threading.Thread(
             target=long_running_function,
             args=("foo",),
-            kwargs=dict(baz="baz", worker=worker),
+            kwargs=dict(baz="baz", worker=worker_3),
             daemon=True,
         ).start()
 
-    def get_data2(self):  
+        # progressBar_4
+        worker_4 = ProgressWorker()
+        worker_4.value_change.connect(self.progressBar_4.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker_4),
+            daemon=True,
+        ).start()
+
+        # progressBar_5
+        worker_5 = ProgressWorker()
+        worker_5.value_change.connect(self.progressBar_5.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker_5),
+            daemon=True,
+        ).start()
+
         
-        for i in range(200):  
-            time.sleep(1) 
+
 
     def get_data(self):
 
@@ -692,23 +702,9 @@ class MyApp(QWidget):
         layout.addWidget(webview)
         self.show()
 
-# height
-# class MainWindow(QtWidgets.QMainWindow):
 
-#     def __init__(self, *args, **kwargs):
-#         super(MainWindow, self).__init__(*args, **kwargs)
-
-#         self.graphWidget = pg.PlotWidget()
-#         #self.setCentralWidget(self.graphWidget)
-#         self.graphWidget.scale(321, 161)
-#         hour = [1,2,3,4,5,6,7,8,9]
-#         temperature = [1,2,3,4,5,6,7,8,9]
-#         self.graphWidget.setBackground('w')
-#         self.graphWidget.plot(hour, temperature)
 
 # progressBar
-
-
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
         QtWidgets.QWidget.__init__(self)

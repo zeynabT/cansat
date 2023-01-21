@@ -8,7 +8,7 @@ import time
 class ProgressWorker(QtCore.QObject):
     started = QtCore.pyqtSignal()
     finished = QtCore.pyqtSignal()
-    percentageChanged = QtCore.pyqtSignal(int)
+    value_change = QtCore.pyqtSignal(int)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,7 +24,7 @@ class ProgressWorker(QtCore.QObject):
         if self._percentage == value:
             return
         self._percentage = value
-        self.percentageChanged.emit(self.percentage)
+        self.value_change.emit(self.percentage)
 
     def start(self):
         self.started.emit()
@@ -33,7 +33,7 @@ class ProgressWorker(QtCore.QObject):
         self.finished.emit()
 
 
-class FakeWorker:
+class PWorker:
     def start(self):
         pass
 
@@ -49,10 +49,11 @@ class FakeWorker:
         pass
 
 
-def long_running_function(foo, baz="1", worker=None):
+def long_running_function(who, baz="0", worker=None):
     if worker is None:
-        worker = FakeWorker()
+        worker = PWorker()
     worker.start()
+    print (who,baz)
     while worker.percentage < 100:
         value = secrets.randbelow(99)  # initializing progress bar
         worker.percentage = value
