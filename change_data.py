@@ -76,94 +76,94 @@ def get_data(self):
         self.LCoordinate_y = self.findChild(QLabel, "label_105")
         self.LCoordinate_y.setText(self.Coordinate_y)
 
-        self.Pressure_6 = self.Pressure_5
-        self.Pressure_5 = self.Pressure_4
-        self.Pressure_4 = self.Pressure_3
-        self.Pressure_3 = self.Pressure_2
-        self.Pressure_2 = self.Pressure_1
-        self.Pressure_1 = self.Pressure
-        self.Pressure = str(secrets.randbelow(100))
+        config.Pressure_6 = config.Pressure_5
+        config.Pressure_5 = config.Pressure_4
+        config.Pressure_4 = config.Pressure_3
+        config.Pressure_3 = config.Pressure_2
+        config.Pressure_2 = config.Pressure_1
+        config.Pressure_1 = config.Pressure
+        config.Pressure = str(secrets.randbelow(100))
 
-        self.InTemp_6 = self.InTemp_5
-        self.InTemp_5 = self.InTemp_4
-        self.InTemp_4 = self.InTemp_3
-        self.InTemp_3 = self.InTemp_2
-        self.InTemp_2 = self.InTemp_1
-        self.InTemp_1 = self.InTemp
-        self.InTemp = str(secrets.randbelow(100))
+        config.InTemp_6 = config.InTemp_5
+        config.InTemp_5 = config.InTemp_4
+        config.InTemp_4 = config.InTemp_3
+        config.InTemp_3 = config.InTemp_2
+        config.InTemp_2 = config.InTemp_1
+        config.InTemp_1 = config.InTemp
+        config.InTemp = str(secrets.randbelow(100))
 
-        self.OutTemp_6 = self.OutTemp_5
-        self.OutTemp_5 = self.OutTemp_4
-        self.OutTemp_4 = self.OutTemp_3
-        self.OutTemp_3 = self.OutTemp_2
-        self.OutTemp_2 = self.OutTemp_1
-        self.OutTemp_1 = self.OutTemp
-        self.OutTemp = str(secrets.randbelow(100))
+        config.OutTemp_6 = config.OutTemp_5
+        config.OutTemp_5 = config.OutTemp_4
+        config.OutTemp_4 = config.OutTemp_3
+        config.OutTemp_3 = config.OutTemp_2
+        config.OutTemp_2 = config.OutTemp_1
+        config.OutTemp_1 = config.OutTemp
+        config.OutTemp = str(secrets.randbelow(100))
 
-        self.Hiumidity_6 = self.Hiumidity_5
-        self.Hiumidity_5 = self.Hiumidity_4
-        self.Hiumidity_4 = self.Hiumidity_3
-        self.Hiumidity_3 = self.Hiumidity_2
-        self.Hiumidity_2 = self.Hiumidity_1
-        self.Hiumidity_1 = self.Hiumidity
-        self.Hiumidity = str(secrets.randbelow(100))
+        config.Hiumidity_6 = config.Hiumidity_5
+        config.Hiumidity_5 = config.Hiumidity_4
+        config.Hiumidity_4 = config.Hiumidity_3
+        config.Hiumidity_3 = config.Hiumidity_2
+        config.Hiumidity_2 = config.Hiumidity_1
+        config.Hiumidity_1 = config.Hiumidity
+        config.Hiumidity = str(secrets.randbelow(100))
 
         self.LPressure = self.findChild(QLabel, "label_2")
-        self.LPressure.setText(self.Pressure)
+        self.LPressure.setText(config.Pressure)
         self.LPressure_1 = self.findChild(QLabel, "label_67")
-        self.LPressure_1.setText(self.Pressure_1)
+        self.LPressure_1.setText(config.Pressure_1)
         self.LPressure_2 = self.findChild(QLabel, "label_69")
-        self.LPressure_2.setText(self.Pressure_2)
+        self.LPressure_2.setText(config.Pressure_2)
         self.LPressure_3 = self.findChild(QLabel, "label_71")
-        self.LPressure_3.setText(self.Pressure_3)
+        self.LPressure_3.setText(config.Pressure_3)
         self.LPressure_4 = self.findChild(QLabel, "label_73")
-        self.LPressure_4.setText(self.Pressure_4)
+        self.LPressure_4.setText(config.Pressure_4)
         self.LPressure_5 = self.findChild(QLabel, "label_75")
-        self.LPressure_5.setText(self.Pressure_5)
+        self.LPressure_5.setText(config.Pressure_5)
         self.LPressure_6 = self.findChild(QLabel, "label_77")
-        self.LPressure_6.setText(self.Pressure_6)
+        self.LPressure_6.setText(config.Pressure_6)
 
         self.LInTemp_6 = self.findChild(QLabel, "label_35")
-        self.LInTemp_6.setText(self.InTemp_6)
+        self.LInTemp_6.setText(config.InTemp_6)
         self.LInTemp = self.findChild(QLabel, "label")
-        self.LInTemp.setText(self.InTemp)
+        self.LInTemp.setText(config.InTemp)
         self.LInTemp_1 = self.findChild(QLabel, "label_25")
-        self.LInTemp_1.setText(self.InTemp_1)
+        self.LInTemp_1.setText(config.InTemp_1)
         self.LInTemp_2 = self.findChild(QLabel, "label_27")
-        self.LInTemp_2.setText(self.InTemp_2)
+        self.LInTemp_2.setText(config.InTemp_2)
         self.LInTemp_3 = self.findChild(QLabel, "label_29")
-        self.LInTemp_3.setText(self.InTemp_3)
+        self.LInTemp_3.setText(config.InTemp_3)
         self.LInTemp_4 = self.findChild(QLabel, "label_31")
-        self.LInTemp_4.setText(self.InTemp_4)
+        self.LInTemp_4.setText(config.InTemp_4)
         self.LInTemp_5 = self.findChild(QLabel, "label_33")
-        self.LInTemp_5.setText(self.InTemp_5)
+        self.LInTemp_5.setText(config.InTemp_5)
 
         self.LOutTemp = self.findChild(QLabel, "label_37")
-        self.LOutTemp.setText(self.OutTemp)
+        self.LOutTemp.setText(config.OutTemp)
         self.LOutTemp_1 = self.findChild(QLabel, "label_39")
-        self.LOutTemp_1.setText(self.OutTemp_1)
+        self.LOutTemp_1.setText(config.OutTemp_1)
         self.LOutTemp_2 = self.findChild(QLabel, "label_41")
-        self.LOutTemp_2.setText(self.OutTemp_2)
+        self.LOutTemp_2.setText(config.OutTemp_2)
         self.LOutTemp_3 = self.findChild(QLabel, "label_43")
-        self.LOutTemp_3.setText(self.OutTemp_3)
+        self.LOutTemp_3.setText(config.OutTemp_3)
         self.LOutTemp_4 = self.findChild(QLabel, "label_45")
-        self.LOutTemp_4.setText(self.OutTemp_4)
+        self.LOutTemp_4.setText(config.OutTemp_4)
         self.LOutTemp_5 = self.findChild(QLabel, "label_47")
-        self.LOutTemp_5.setText(self.OutTemp_5)
+        self.LOutTemp_5.setText(config.OutTemp_5)
         self.LOutTemp_6 = self.findChild(QLabel, "label_49")
-        self.LOutTemp_6.setText(self.OutTemp_6)
+        self.LOutTemp_6.setText(config.OutTemp_6)
 
         self.LHiumidity = self.findChild(QLabel, "label_50")
-        self.LHiumidity.setText(self.Hiumidity)
+        self.LHiumidity.setText(config.Hiumidity)
         self.LHiumidity_1 = self.findChild(QLabel, "label_54")
-        self.LHiumidity_1.setText(self.Hiumidity_1)
+        self.LHiumidity_1.setText(config.Hiumidity_1)
         self.LHiumidity_2 = self.findChild(QLabel, "label_56")
-        self.LHiumidity_2.setText(self.Hiumidity_2)
+        self.LHiumidity_2.setText(config.Hiumidity_2)
         self.LHiumidity_3 = self.findChild(QLabel, "label_58")
-        self.LHiumidity_3.setText(self.Hiumidity_3)
+        self.LHiumidity_3.setText(config.Hiumidity_3)
         self.LHiumidity_4 = self.findChild(QLabel, "label_60")
-        self.LHiumidity_4.setText(self.Hiumidity_4)
+        self.LHiumidity_4.setText(config.Hiumidity_4)
         self.LHiumidity_5 = self.findChild(QLabel, "label_62")
-        self.LHiumidity_5.setText(self.Hiumidity_5)
+        self.LHiumidity_5.setText(config.Hiumidity_5)
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
-        self.LHiumidity_6.setText(self.Hiumidity_6)
+        self.LHiumidity_6.setText(config.Hiumidity_6)
