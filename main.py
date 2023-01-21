@@ -11,7 +11,9 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from threading import Thread
 import threading
 from worker import long_running_function, ProgressWorker
-from change_data import get_data
+from show_data import show_data
+from get_data import get_data_from_server
+
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -232,9 +234,6 @@ class Ui(QtWidgets.QMainWindow):
         self.progressBar_2.setStyleSheet(
             "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
 
-        t = Thread(target=get_data, args=(self,))
-        t.start()
-
         # height
         # height = MainWindow()
         self.graphWidget = pg.PlotWidget()
@@ -245,6 +244,13 @@ class Ui(QtWidgets.QMainWindow):
         self.graphWidget.setGeometry(0, 0, 321, 191)
 
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
+        
+        get_data_t=Thread(target=get_data_from_server)
+        get_data_t.start()
+
+        t = Thread(target=show_data, args=(self,))
+        t.start()
+
         self.launch()
         self.show()
 
