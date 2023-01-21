@@ -1,8 +1,7 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtGui import QFont, QPixmap
 import sys
 from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
@@ -14,15 +13,13 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 import time
 from threading import Thread
 import secrets
-import sys
 import threading
 import os
 from PyQt5 import QtCore, QtMultimedia
-from worker import long_running_function,ProgressWorker
+from worker import long_running_function, ProgressWorker
 
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
-
 
 
 def sound():
@@ -94,13 +91,12 @@ class Ui(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(Ui, self).__init__()
         uic.loadUi('CAN-SAT2.ui', self)
-
-        Good = "Good"
-        Low = "Low"
-        Moderate = "Moderate"
-        Heigh = "Heigh"
-        VeryHeigh = "Very Heigh"
-        Extreme = "Extreme"
+        # Good = "Good"
+        # Low = "Low"
+        # Moderate = "Moderate"
+        # Heigh = "Heigh"
+        # VeryHeigh = "Very Heigh"
+        # Extreme = "Extreme"
 
         # setting label for every int
         self.LA_angular = self.findChild(QLabel, "label_96")
@@ -326,7 +322,7 @@ class Ui(QtWidgets.QMainWindow):
             SPressure.setPixmap(pixmapG)
         else:
             SPressure.setPixmap(pixmapR)
-            
+
         SPressure = self.findChild(QLabel, "label_114")
         if self.sensorHumidity:
             SPressure.setPixmap(pixmapG)
@@ -356,8 +352,8 @@ class Ui(QtWidgets.QMainWindow):
             SsatelliteConnection.setPixmap(pixmapG)
         else:
             SsatelliteConnection.setPixmap(pixmapR)
-        
-        # sound 
+
+        # sound
         filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
         # app2 = QtCore.QCoreApplication(sys.argv)
         player = QtMultimedia.QMediaPlayer()
@@ -367,8 +363,7 @@ class Ui(QtWidgets.QMainWindow):
         # time.sleep(2)
         # QtCore.QCoreApplication.quit()
         # sys.exit(app2.exec_())
-        #sound()
-        
+        # sound()
 
         # Map
         m = folium.Map(
@@ -389,12 +384,14 @@ class Ui(QtWidgets.QMainWindow):
         # t2 = Thread(target=self.get_data2)
         t.start()
         # t2.start()
-       
-        #linearProgressbar
-        self.progressBar_3.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_4.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_5.setStyleSheet("border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        
+
+        # linearProgressbar
+        self.progressBar_3.setStyleSheet(
+            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        self.progressBar_4.setStyleSheet(
+            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        self.progressBar_5.setStyleSheet(
+            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
 
         # linearProgressbar
         self.progressBar_3.setStyleSheet(
@@ -415,22 +412,22 @@ class Ui(QtWidgets.QMainWindow):
         temperature = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.graphWidget.setBackground('w')
         self.graphWidget.plot(hour, temperature)
-        # vb = self.graphWidget.getViewBox()                                                           
-        # vb.setAspectLocked(lock=False)                                                  
-        # vb.setAutoVisible(y=0.5)                                                        
-        # vb.enableAutoRange(axis='y', enable=True) 
+        # vb = self.graphWidget.getViewBox()
+        # vb.setAspectLocked(lock=False)
+        # vb.setAutoVisible(y=0.5)
+        # vb.enableAutoRange(axis='y', enable=True)
         self.graphWidget.setGeometry(0, 0, 321, 191)
         # create list for y-axis
         # y1 = [5, 5, 7, 10, 3, 8, 9, 1, 6, 2]
-        
+
         # # create horizontal list i.e x-axis
         # x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-        
+
         # # create pyqt5graph bar graph item
         # # with width = 0.6
         # # with bar colors = green
         # bargraph1 = pg.BarGraphItem(x = x, height = y1, width = 0.6, brush ='g')
-        
+
         # add item to plot window
         # adding bargraph item to the window
         # self.graphWidget.addItem(bargraph1)
@@ -439,65 +436,10 @@ class Ui(QtWidgets.QMainWindow):
         self.launch()
         self.show()
 
-
-
-    def launch(self):
-        # progressBar_3
-        worker_3 = ProgressWorker()
-        worker_3.value_change.connect(self.progressBar_3.setValue)
-        threading.Thread(
-            target=long_running_function,
-            args=("foo",),
-            kwargs=dict(baz="baz", worker=worker_3),
-            daemon=True,
-        ).start()
-
-        # progressBar_4
-        worker_4 = ProgressWorker()
-        worker_4.value_change.connect(self.progressBar_4.setValue)
-        threading.Thread(
-            target=long_running_function,
-            args=("foo",),
-            kwargs=dict(baz="baz", worker=worker_4),
-            daemon=True,
-        ).start()
-
-        # progressBar_5
-        worker_5 = ProgressWorker()
-        worker_5.value_change.connect(self.progressBar_5.setValue)
-        threading.Thread(
-            target=long_running_function,
-            args=("foo",),
-            kwargs=dict(baz="baz", worker=worker_5),
-            daemon=True,
-        ).start()
-
-        
-
-
     def get_data(self):
 
         for i in range(200):
             time.sleep(1)
-
-            self.A_angular = str(secrets.randbelow(100))
-            self.A_linear = str(secrets.randbelow(100))
-            if i == 5 :
-                            
-                # filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
-                # app2 = QtCore.QCoreApplication(sys.argv)
-                # player = QtMultimedia.QMediaPlayer()
-                # url = QtCore.QUrl.fromLocalFile(filename)
-                # player.setMedia(QtMultimedia.QMediaContent(url))
-                # player.play()
-                # sys.exit(app2.exec_())
-                self.t2.quit()
-
-    
-    def get_data(self):  
-        
-        for i in range(200):  
-            time.sleep(1) 
             # self.A_angular = str(secrets.randbelow(100))
             # self.A_linear = str(secrets.randbelow(100))
 
@@ -658,6 +600,55 @@ class Ui(QtWidgets.QMainWindow):
             self.LHiumidity_6 = self.findChild(QLabel, "label_64")
             self.LHiumidity_6.setText(self.Hiumidity_6)
 
+    def launch(self):
+        # progressBar_3
+        worker_3 = ProgressWorker()
+        worker_3.value_change.connect(self.progressBar_3.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker_3),
+            daemon=True,
+        ).start()
+
+        # progressBar_4
+        worker_4 = ProgressWorker()
+        worker_4.value_change.connect(self.progressBar_4.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker_4),
+            daemon=True,
+        ).start()
+
+        # progressBar_5
+        worker_5 = ProgressWorker()
+        worker_5.value_change.connect(self.progressBar_5.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("foo",),
+            kwargs=dict(baz="baz", worker=worker_5),
+            daemon=True,
+        ).start()
+
+    # def get_data(self):
+
+    #     for i in range(200):
+    #         time.sleep(1)
+
+    #         self.A_angular = str(secrets.randbelow(100))
+    #         self.A_linear = str(secrets.randbelow(100))
+    #         if i == 5 :
+
+    #             # filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
+    #             # app2 = QtCore.QCoreApplication(sys.argv)
+    #             # player = QtMultimedia.QMediaPlayer()
+    #             # url = QtCore.QUrl.fromLocalFile(filename)
+    #             # player.setMedia(QtMultimedia.QMediaContent(url))
+    #             # player.play()
+    #             # sys.exit(app2.exec_())
+    #             self.t2.quit()
+
         # self.graphWidget = pg.PlotWidget()
         # hour = [1,2,3,4,5,6,7,8,9,10]
         # temperature = [1,2,3,4,5,1,2,3,4,5]
@@ -703,7 +694,6 @@ class MyApp(QWidget):
         self.show()
 
 
-
 # progressBar
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -724,7 +714,7 @@ class MyWidget(QtWidgets.QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ui=Ui()
+    ui = Ui()
     app.exec_()
     # app.setStyleSheet('''
     #     QWidget {
@@ -740,4 +730,3 @@ if __name__ == "__main__":
 #     sys.exit(app.exec_())
 #   except SystemExit:
 #     print('Closing Window...')
-
