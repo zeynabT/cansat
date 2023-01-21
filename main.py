@@ -467,7 +467,26 @@ class Ui(QtWidgets.QMainWindow):
         temperature = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         self.graphWidget.setBackground('w')
         self.graphWidget.plot(hour, temperature)
-        self.graphWidget.scale(321, 161)
+        # vb = self.graphWidget.getViewBox()                                                           
+        # vb.setAspectLocked(lock=False)                                                  
+        # vb.setAutoVisible(y=0.5)                                                        
+        # vb.enableAutoRange(axis='y', enable=True) 
+        self.graphWidget.setGeometry(0, 0, 321, 191)
+        # create list for y-axis
+        # y1 = [5, 5, 7, 10, 3, 8, 9, 1, 6, 2]
+        
+        # # create horizontal list i.e x-axis
+        # x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        
+        # # create pyqt5graph bar graph item
+        # # with width = 0.6
+        # # with bar colors = green
+        # bargraph1 = pg.BarGraphItem(x = x, height = y1, width = 0.6, brush ='g')
+        
+        # add item to plot window
+        # adding bargraph item to the window
+        # self.graphWidget.addItem(bargraph1)
+        # 321, 161
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         self.launch()
         self.show()
