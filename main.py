@@ -35,12 +35,6 @@ def sound():
 
 
 class Ui(QtWidgets.QMainWindow):
-    A_angular = "12"
-    A_linear = "20"
-
-
-    AirQuality = "4"
-    UVIndex = "6"
 
     CoordinateX = 36.31130898586006
     CoordinateY = 59.526375931025
@@ -48,15 +42,8 @@ class Ui(QtWidgets.QMainWindow):
     Coordinate_y = str(CoordinateY)
     coordinate = (CoordinateX, CoordinateY)
 
-    sensorPressure = False
-    sensorAcceleration = False
-    sensorTemp = False
-    sensorHumidity = False
-    sensorAirQ = False
-    sensorUV = False
-    groundStationConnection = False
-    satelliteConnection = False
-    dataOfCamera = False
+    pixmapG = ''
+    pixmapR = ''
 
     def __init__(self, parent=None):
         super(Ui, self).__init__()
@@ -68,7 +55,6 @@ class Ui(QtWidgets.QMainWindow):
         # VeryHeigh = "Very Heigh"
         # Extreme = "Extreme"
 
-
         # alarm
         self.alarmText = self.findChild(QLabel, "label_109")
         self.label_109.setFont(QFont('Arial', 11))
@@ -77,12 +63,6 @@ class Ui(QtWidgets.QMainWindow):
         self.alarm = self.findChild(QLabel, "label_108")
         self.label_108.setFont(QFont('Arial', 11))
         self.alarm.setStyleSheet("color: rgb(175, 0,3)")
-
-        self.LAirQuality = self.findChild(QLabel, "label_52")
-        self.LAirQuality.setText(self.AirQuality)
-
-        self.LUVIndex = self.findChild(QLabel, "label_100")
-        self.LUVIndex.setText(self.UVIndex)
 
         self.Coordinate_x = self.findChild(QLabel, "label_103")
         self.Coordinate_x.setText(str(self.CoordinateX))
@@ -205,59 +185,11 @@ class Ui(QtWidgets.QMainWindow):
         receivedImage.setParent(imgWidget)
 
         # Sensors
-        pixmapG = QPixmap('img/button-green.jpg')
-        pixmapR = QPixmap('img/button-red.jpg')
+        self.pixmapG = QPixmap('img/button-green.jpg')
+        self.pixmapR = QPixmap('img/button-red.jpg')
         low_rez = QtCore.QSize(18, 18)
-        pixmapG = pixmapG.scaled(low_rez)
-        pixmapR = pixmapR.scaled(low_rez)
-
-        SPressure = self.findChild(QLabel, "label_110")
-        if self.sensorPressure:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SPressure = self.findChild(QLabel, "label_111")
-        if self.sensorAcceleration:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SPressure = self.findChild(QLabel, "label_112")
-        if self.sensorTemp:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SPressure = self.findChild(QLabel, "label_114")
-        if self.sensorHumidity:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SPressure = self.findChild(QLabel, "label_113")
-        if self.sensorAirQ:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SPressure = self.findChild(QLabel, "label_116")
-        if self.sensorUV:
-            SPressure.setPixmap(pixmapG)
-        else:
-            SPressure.setPixmap(pixmapR)
-
-        SgroundStationConnection = self.findChild(QLabel, "label_117")
-        if self.sensorAirQ:
-            SgroundStationConnection.setPixmap(pixmapG)
-        else:
-            SgroundStationConnection.setPixmap(pixmapR)
-
-        SsatelliteConnection = self.findChild(QLabel, "label_118")
-        if self.sensorAirQ:
-            SsatelliteConnection.setPixmap(pixmapG)
-        else:
-            SsatelliteConnection.setPixmap(pixmapR)
+        self.pixmapG = self.pixmapG.scaled(low_rez)
+        self.pixmapR = self.pixmapR.scaled(low_rez)
 
         # sound
         filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
@@ -286,7 +218,7 @@ class Ui(QtWidgets.QMainWindow):
         webView.setParent(self.findChild(QWidget, "widget_9"))
         webView.setStyleSheet("border-radius: 30px;")
 
-        t = Thread(target=get_data,args=(self,))
+        t = Thread(target=get_data, args=(self,))
         t.start()
 
         # linearProgressbar
@@ -339,7 +271,6 @@ class Ui(QtWidgets.QMainWindow):
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
         self.launch()
         self.show()
-
 
     def launch(self):
         # progressBar_3

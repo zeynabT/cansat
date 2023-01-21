@@ -1,4 +1,4 @@
-            # Pressure = "60"
+    # Pressure = "60"
     # Pressure_1 = "0"
     # Pressure_2 = "0"
     # Pressure_3 = "0"
@@ -29,7 +29,22 @@
     # Hiumidity_4 = "0"
     # Hiumidity_5 = "0"
     # Hiumidity_6 = "0"
+
+    # A_angular = "12"
+    # A_linear = "20"
+
+    # AirQuality = "4"
+    # UVIndex = "6"
         
+    # sensorPressure = False
+    # sensorAcceleration = False
+    # sensorTemp = False
+    # sensorHumidity = False
+    # sensorAirQ = False
+    # sensorUV = False
+    # groundStationConnection = False
+    # satelliteConnection = False
+    # dataOfCamera = False
         
         # setting label for every int
         # self.LA_angular = self.findChild(QLabel, "label_96")
@@ -96,3 +111,9 @@
         # self.LHiumidity_5.setText(self.Hiumidity_5)
         # self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         # self.LHiumidity_6.setText(self.Hiumidity_6)
+
+        # self.LAirQuality = self.findChild(QLabel, "label_52")
+        # self.LAirQuality.setText(self.AirQuality)
+
+        # self.LUVIndex = self.findChild(QLabel, "label_100")
+        # self.LUVIndex.setText(self.UVIndex)

@@ -3,7 +3,7 @@ import time
 import secrets
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtGui import QFont
-import config 
+import config
 
 
 def get_data(self):
@@ -13,7 +13,7 @@ def get_data(self):
 
         # Discription label for UV & air quality
         AirQualityValue = secrets.randbelow(100)
-        self.AirQuality = str(AirQualityValue)
+        config.AirQuality = str(AirQualityValue)
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
         if AirQualityValue < 17:
@@ -31,13 +31,13 @@ def get_data(self):
 
         self.alarmText = self.findChild(QLabel, "label_109")
         self.alarm = self.findChild(QLabel, "label_108")
-        if self.dataOfCamera == False:
+        if config.dataOfCamera == False:
             self.alarmText.setText(
                 "Ground station can not receive any data from camera")
             self.alarm.setText("Alarm:")
 
         UVIndexValue = secrets.randbelow(100)
-        self.UVIndex = str(UVIndexValue)
+        config.UVIndex = str(UVIndexValue)
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont("Arial [red]", 10))
 
@@ -54,22 +54,22 @@ def get_data(self):
         elif UVIndexValue < 101:
             self.UVLabel.setText("Hazardous")
 
-        self.CoordinateX = 36.31130898586006
-        self.CoordinateY = 59.526375931025
+        self.CoordinateX = self.CoordinateX+1
+        self.CoordinateY = self.CoordinateY + 1
         self.Coordinate_x = str(self.CoordinateX)
         self.Coordinate_y = str(self.CoordinateY)
         self.coordinate = (self.CoordinateX, self.CoordinateY)
 
         self.LA_angular = self.findChild(QLabel, "label_96")
-        self.LA_angular.setText(self.A_angular)
+        self.LA_angular.setText(config.A_angular)
         self.LA_linear = self.findChild(QLabel, "label_97")
-        self.LA_linear.setText(self.A_linear)
+        self.LA_linear.setText(config.A_linear)
 
         self.LAirQuality = self.findChild(QLabel, "label_52")
-        self.LAirQuality.setText(self.AirQuality)
+        self.LAirQuality.setText(config.AirQuality)
 
         self.LUVIndex = self.findChild(QLabel, "label_100")
-        self.LUVIndex.setText(self.UVIndex)
+        self.LUVIndex.setText(config.UVIndex)
 
         self.LCoordinate_x = self.findChild(QLabel, "label_103")
         self.LCoordinate_x.setText(self.Coordinate_x)
@@ -167,3 +167,51 @@ def get_data(self):
         self.LHiumidity_5.setText(config.Hiumidity_5)
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         self.LHiumidity_6.setText(config.Hiumidity_6)
+
+        SPressure = self.findChild(QLabel, "label_110")
+        if config.sensorPressure:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_111")
+        if config.sensorAcceleration:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_112")
+        if config.sensorTemp:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_114")
+        if config.sensorHumidity:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_113")
+        if config.sensorAirQ:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SPressure = self.findChild(QLabel, "label_116")
+        if config.sensorUV:
+            SPressure.setPixmap(self.pixmapG)
+        else:
+            SPressure.setPixmap(self.pixmapR)
+
+        SgroundStationConnection = self.findChild(QLabel, "label_117")
+        if config.sensorAirQ:
+            SgroundStationConnection.setPixmap(self.pixmapG)
+        else:
+            SgroundStationConnection.setPixmap(self.pixmapR)
+
+        SsatelliteConnection = self.findChild(QLabel, "label_118")
+        if config.sensorAirQ:
+            SsatelliteConnection.setPixmap(self.pixmapG)
+        else:
+            SsatelliteConnection.setPixmap(self.pixmapR)
