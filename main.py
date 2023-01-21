@@ -79,7 +79,7 @@ def long_running_function(foo, baz="1", worker=None):
 
 def sound():
 
-    filename = os.path.join(CURRENT_DIR, "red_danger_alarm_2_2.mp3")
+    filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
     app2 = QtCore.QCoreApplication(sys.argv)
     player = QtMultimedia.QMediaPlayer()
     url = QtCore.QUrl.fromLocalFile(filename)
@@ -245,109 +245,109 @@ class Ui(QtWidgets.QMainWindow):
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont('Arial', 10))
         self.iconText = self.setWindowTitle("FUM_CAN")
-        self.windowIcon = self.setWindowIcon(QtGui.QIcon('logo-white.jpg'))
+        self.windowIcon = self.setWindowIcon(QtGui.QIcon('img/logo-white.jpg'))
 
         # icon
         IPressure = self.findChild(QLabel, "label_5")
-        pixmap = QPixmap('pressure.jpg')
+        pixmap = QPixmap('img/pressure.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IPressure.setPixmap(pixmap)
 
         IAcceleration = self.findChild(QLabel, "label_6")
-        pixmap = QPixmap('Acceleration.jpg')
+        pixmap = QPixmap('img/Acceleration.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IAcceleration.setPixmap(pixmap)
 
         IInTemp = self.findChild(QLabel, "label_7")
-        pixmap = QPixmap('icons8-temperature-inside2.jpg')
+        pixmap = QPixmap('img/icons8-temperature-inside2.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IInTemp.setPixmap(pixmap)
 
         IIOutTemp = self.findChild(QLabel, "label_8")
-        pixmap = QPixmap('temperature-outside4.jpg')
+        pixmap = QPixmap('img/temperature-outside4.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         IIOutTemp.setPixmap(pixmap)
 
         IHiumidity = self.findChild(QLabel, "label_9")
-        pixmap = QPixmap('humidity-.jpg')
+        pixmap = QPixmap('img/humidity-.jpg')
         pixmap = pixmap.scaled(low_rez)
         IHiumidity.setPixmap(pixmap)
 
         IAirQuality = self.findChild(QLabel, "label_10")
-        pixmap = QPixmap('wind2.jpg')
+        pixmap = QPixmap('img/wind2.jpg')
         pixmap = pixmap.scaled(low_rez)
         IAirQuality.setPixmap(pixmap)
 
         IUVIndex = self.findChild(QLabel, "label_11")
-        pixmap = QPixmap('sun.jpg')
+        pixmap = QPixmap('img/sun.jpg')
         pixmap = pixmap.scaled(low_rez)
         IUVIndex.setPixmap(pixmap)
 
         ISensor = self.findChild(QLabel, "label_12")
-        pixmap = QPixmap('sensor.jpg')
+        pixmap = QPixmap('img/sensor.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor.setPixmap(pixmap)
 
         ISensor_pressure = self.findChild(QLabel, "label_78")
-        pixmap = QPixmap('pressure.jpg')
+        pixmap = QPixmap('img/pressure.jpg')
         low_rez = QtCore.QSize(25, 25)
         pixmap = pixmap.scaled(low_rez)
         ISensor_pressure.setPixmap(pixmap)
 
         ISensor_acceleration = self.findChild(QLabel, "label_82")
-        pixmap = QPixmap('Acceleration.jpg')
+        pixmap = QPixmap('img/Acceleration.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_acceleration.setPixmap(pixmap)
 
         ISensor_temp = self.findChild(QLabel, "label_84")
-        pixmap = QPixmap('icons8-temperature-inside2.jpg')
+        pixmap = QPixmap('img/icons8-temperature-inside2.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_temp.setPixmap(pixmap)
 
         ISensor_hiumidity = self.findChild(QLabel, "label_79")
-        pixmap = QPixmap('humidity-.jpg')
+        pixmap = QPixmap('img/humidity-.jpg')
         low_rez = QtCore.QSize(23, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_hiumidity.setPixmap(pixmap)
 
         ISensor_air = self.findChild(QLabel, "label_83")
-        pixmap = QPixmap('wind2.jpg')
+        pixmap = QPixmap('img/wind2.jpg')
         low_rez = QtCore.QSize(21, 21)
         pixmap = pixmap.scaled(low_rez)
         ISensor_air.setPixmap(pixmap)
 
         ISensor_UV = self.findChild(QLabel, "label_85")
-        pixmap = QPixmap('sun.jpg')
+        pixmap = QPixmap('img/sun.jpg')
         low_rez = QtCore.QSize(25, 23)
         pixmap = pixmap.scaled(low_rez)
         ISensor_UV.setPixmap(pixmap)
 
         ISatellite_1 = self.findChild(QLabel, "label_80")
-        pixmap = QPixmap('satellite.jpg')
+        pixmap = QPixmap('img/satellite.jpg')
         low_rez = QtCore.QSize(23, 23)
         pixmap = pixmap.scaled(low_rez)
         ISatellite_1.setPixmap(pixmap)
 
         ISatellite_2 = self.findChild(QLabel, "label_81")
-        pixmap = QPixmap('satellite.jpg')
+        pixmap = QPixmap('img/satellite.jpg')
         pixmap = pixmap.scaled(low_rez)
         ISatellite_2.setPixmap(pixmap)
 
         ILogo = self.findChild(QLabel, "label_107")
-        pixmap = QPixmap('logo.jpg')
+        pixmap = QPixmap('img/logo.jpg')
         low_rez = QtCore.QSize(50, 45)
         pixmap = pixmap.scaled(low_rez)
         ILogo.setPixmap(pixmap)
 
         receivedImage = QLabel()
-        pixmap = QPixmap('image1.jpg')
+        pixmap = QPixmap('img/image1.jpg')
         low_rez = QtCore.QSize(321, 200)
         pixmap = pixmap.scaled(low_rez)
         receivedImage.setPixmap(pixmap)
@@ -355,8 +355,8 @@ class Ui(QtWidgets.QMainWindow):
         receivedImage.setParent(imgWidget)
 
         # Sensors
-        pixmapG = QPixmap('button-green.jpg')
-        pixmapR = QPixmap('button-red.jpg')
+        pixmapG = QPixmap('img/button-green.jpg')
+        pixmapR = QPixmap('img/button-red.jpg')
         low_rez = QtCore.QSize(18, 18)
         pixmapG = pixmapG.scaled(low_rez)
         pixmapR = pixmapR.scaled(low_rez)
@@ -410,7 +410,7 @@ class Ui(QtWidgets.QMainWindow):
             SsatelliteConnection.setPixmap(pixmapR)
         
         # sound 
-        filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+        filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
         # app2 = QtCore.QCoreApplication(sys.argv)
         player = QtMultimedia.QMediaPlayer()
         url = QtCore.QUrl.fromLocalFile(filename)
@@ -526,7 +526,7 @@ class Ui(QtWidgets.QMainWindow):
             self.A_linear = str(secrets.randbelow(100))
             if i == 5 :
                             
-                # filename = os.path.join(CURRENT_DIR, "C:\\Users\\Zeynab\\Downloads\\3times.mp3")
+                # filename = os.path.join(CURRENT_DIR, "sound/red_danger_alarm_2_2.mp3")
                 # app2 = QtCore.QCoreApplication(sys.argv)
                 # player = QtMultimedia.QMediaPlayer()
                 # url = QtCore.QUrl.fromLocalFile(filename)
