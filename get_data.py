@@ -18,7 +18,7 @@ def get_data_from_server():
         config.Pressure_3 = config.Pressure_2
         config.Pressure_2 = config.Pressure_1
         config.Pressure_1 = config.Pressure
-        config.Pressure = str(data['pressure'])
+        config.Pressure = (data['pressure']) # set new data for pressure
 
         config.InTemp_6 = config.InTemp_5
         config.InTemp_5 = config.InTemp_4
@@ -26,7 +26,7 @@ def get_data_from_server():
         config.InTemp_3 = config.InTemp_2
         config.InTemp_2 = config.InTemp_1
         config.InTemp_1 = config.InTemp
-        config.InTemp = str(data['inside_temp'])
+        config.InTemp = (data['inside_temp']) # set new data for inside_temp
 
         config.OutTemp_6 = config.OutTemp_5
         config.OutTemp_5 = config.OutTemp_4
@@ -34,7 +34,7 @@ def get_data_from_server():
         config.OutTemp_3 = config.OutTemp_2
         config.OutTemp_2 = config.OutTemp_1
         config.OutTemp_1 = config.OutTemp
-        config.OutTemp = str(data['outside_temp'])
+        config.OutTemp = (data['outside_temp'])  # set new data for outside_temp
 
         config.Hiumidity_6 = config.Hiumidity_5
         config.Hiumidity_5 = config.Hiumidity_4
@@ -42,7 +42,15 @@ def get_data_from_server():
         config.Hiumidity_3 = config.Hiumidity_2
         config.Hiumidity_2 = config.Hiumidity_1
         config.Hiumidity_1 = config.Hiumidity
-        config.Hiumidity = str(data['humidity'])
+        config.Hiumidity = (data['humidity']) # set new data for humidity
 
-        config.AirQuality=data['air_quality']
+        config.AirQuality=data['air_quality'] # set new data for air_quality
 
+        config.UVIndex=data['uv_index'] # set new data for uv_index
+
+        config.A_linear=data['linear'] # set new data for linear
+
+        config.A_angular=data['angular'] # set new data for angular
+
+
+# img_path

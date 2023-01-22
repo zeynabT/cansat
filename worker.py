@@ -46,15 +46,20 @@ class PWorker:
 
     @percentage.setter
     def percentage(self, value):
-        passp
+        pass
 
 
 def long_running_function(who, baz="0", worker=None):
     if worker is None:
         worker = PWorker()
     worker.start()
-    while worker.percentage < 100:
-        value = config.air_quality  # initializing progress bar
+    while True:
+        if who == 'AirQuality':
+            value = config.AirQuality
+        if who == 'Pressure':
+            value = config.Pressure
+        if who == 'UVIndex':
+            value = config.UVIndex
         worker.percentage = value
         time.sleep(1)
-        worker.finish()     
+        worker.finish()

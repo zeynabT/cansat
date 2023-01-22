@@ -260,7 +260,7 @@ class Ui(QtWidgets.QMainWindow):
         worker_3.value_change.connect(self.progressBar_3.setValue)
         threading.Thread(
             target=long_running_function,
-            args=("foo",),
+            args=("Pressure",),
             kwargs=dict(baz="baz", worker=worker_3),
             daemon=True,
         ).start()
@@ -270,7 +270,7 @@ class Ui(QtWidgets.QMainWindow):
         worker_4.value_change.connect(self.progressBar_4.setValue)
         threading.Thread(
             target=long_running_function,
-            args=("foo",),
+            args=("AirQuality",),
             kwargs=dict(baz="baz", worker=worker_4),
             daemon=True,
         ).start()
@@ -280,7 +280,7 @@ class Ui(QtWidgets.QMainWindow):
         worker_5.value_change.connect(self.progressBar_5.setValue)
         threading.Thread(
             target=long_running_function,
-            args=("foo",),
+            args=("UVIndex",),
             kwargs=dict(baz="baz", worker=worker_5),
             daemon=True,
         ).start()
