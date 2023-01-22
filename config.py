@@ -34,6 +34,8 @@ Hiumidity_6 = 0
 
 AirQuality = 0
 UVIndex = 0
+x_height=[]
+y_height=[]
 
 #####################################
 CoordinateX = 36.31130898586006

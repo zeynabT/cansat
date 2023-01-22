@@ -1,7 +1,7 @@
 
 import time
 import secrets
-from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QLabel,QWidget
 from PyQt5.QtGui import QFont
 import config
 
@@ -132,6 +132,10 @@ def show_data(self):
         self.LHiumidity_5.setText(str(config.Hiumidity_5))
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         self.LHiumidity_6.setText(str(config.Hiumidity_6))
+
+
+        self.graphWidget.plot(config.x_height, config.y_height)
+        # self.graphWidget.addItem(config.x_height, config.y_height)
 
         SPressure = self.findChild(QLabel, "label_110")
         if config.sensorPressure:

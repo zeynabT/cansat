@@ -13,7 +13,7 @@ import threading
 from worker import long_running_function, ProgressWorker
 from show_data import show_data
 from get_data import get_data_from_server
-
+import config
 
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -235,17 +235,14 @@ class Ui(QtWidgets.QMainWindow):
             "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
 
         # height
-        # height = MainWindow()
         self.graphWidget = pg.PlotWidget()
-        hour = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        temperature = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        self.graphWidget.setBackground('w')
-        self.graphWidget.plot(hour, temperature)
-        self.graphWidget.setGeometry(0, 0, 321, 191)
 
+        self.graphWidget.setBackground('w')
+        self.graphWidget.plot(config.x_height, config.y_height)
+        self.graphWidget.setGeometry(0, 0, 321, 191)
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
-        
-        get_data_t=Thread(target=get_data_from_server)
+
+        get_data_t = Thread(target=get_data_from_server)
         get_data_t.start()
 
         t = Thread(target=show_data, args=(self,))
@@ -319,21 +316,21 @@ class MyApp(QWidget):
 
 
 # progressBar
-class MyWidget(QtWidgets.QWidget):
-    def __init__(self):
-        QtWidgets.QWidget.__init__(self)
+# class MyWidget(QtWidgets.QWidget):
+#     def __init__(self):
+#         QtWidgets.QWidget.__init__(self)
 
-        # CLASS INSTANCE
-        self.rpb = roundProgressBar()
-        # LINE WIDTH
-        self.rpb.rpb_setLineWidth(10)
-        # LINE CAP
-        self.rpb.rpb_setLineCap('RoundCap')
-        self.rpb.rpb_setValue(45)
+#         # CLASS INSTANCE
+#         self.rpb = roundProgressBar()
+#         # LINE WIDTH
+#         self.rpb.rpb_setLineWidth(10)
+#         # LINE CAP
+#         self.rpb.rpb_setLineCap('RoundCap')
+#         self.rpb.rpb_setValue(45)
 
-        self.layout = QtWidgets.QHBoxLayout()
-        self.layout.addWidget(self.rpb)
-        self.setLayout(self.layout)
+#         self.layout = QtWidgets.QHBoxLayout()
+#         self.layout.addWidget(self.rpb)
+#         self.setLayout(self.layout)
 
 
 if __name__ == "__main__":
@@ -345,4 +342,3 @@ if __name__ == "__main__":
     #         font-size: 35px;
     #     }
     # ''')
-
