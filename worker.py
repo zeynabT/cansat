@@ -2,7 +2,7 @@
 from PyQt5 import QtCore
 import secrets
 import time
-
+import config
 
 
 class ProgressWorker(QtCore.QObject):
@@ -46,7 +46,7 @@ class PWorker:
 
     @percentage.setter
     def percentage(self, value):
-        pass
+        passp
 
 
 def long_running_function(who, baz="0", worker=None):
@@ -54,7 +54,7 @@ def long_running_function(who, baz="0", worker=None):
         worker = PWorker()
     worker.start()
     while worker.percentage < 100:
-        value = secrets.randbelow(99)  # initializing progress bar
+        value = config.air_quality  # initializing progress bar
         worker.percentage = value
         time.sleep(1)
-        worker.finish()
+        worker.finish()     

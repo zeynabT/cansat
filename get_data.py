@@ -44,3 +44,5 @@ def get_data_from_server():
         config.Hiumidity_1 = config.Hiumidity
         config.Hiumidity = str(data['humidity'])
 
+        config.AirQuality=data['air_quality']
+

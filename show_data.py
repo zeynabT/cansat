@@ -12,21 +12,19 @@ def show_data(self):
         time.sleep(1)
 
         # Discription label for UV & air quality
-        AirQualityValue = secrets.randbelow(100)
-        config.AirQuality = str(AirQualityValue)
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
-        if AirQualityValue < 17:
+        if config.AirQuality < 17:
             self.airLabel.setText("Very Good")
-        elif AirQualityValue < 33:
+        elif config.AirQuality < 33:
             self.airLabel.setText("Good")
-        elif AirQualityValue < 49:
+        elif config.AirQuality < 49:
             self.airLabel.setText("Fair")
-        elif AirQualityValue < 65:
+        elif config.AirQuality < 65:
             self.airLabel.setText("Poor")
-        elif AirQualityValue < 81:
+        elif config.AirQuality < 81:
             self.airLabel.setText("Very Poor")
-        elif AirQualityValue < 101:
+        elif config.AirQuality < 101:
             self.airLabel.setText("Hazardous")
 
         self.alarmText = self.findChild(QLabel, "label_109")
@@ -66,7 +64,7 @@ def show_data(self):
         self.LA_linear.setText(config.A_linear)
 
         self.LAirQuality = self.findChild(QLabel, "label_52")
-        self.LAirQuality.setText(config.AirQuality)
+        self.LAirQuality.setText(str(config.AirQuality))
 
         self.LUVIndex = self.findChild(QLabel, "label_100")
         self.LUVIndex.setText(config.UVIndex)
