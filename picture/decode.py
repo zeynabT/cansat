@@ -6,7 +6,6 @@ print()
 payloader = bytearray()
 
 for i in range(int(len(output)/28)+1):
-    
     s1=output[:len(str(i))]
     output=output[len(str(i)):]
     s2=output[:28]

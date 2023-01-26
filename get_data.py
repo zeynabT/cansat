@@ -3,6 +3,18 @@ import requests
 import json
 import time
 
+from threading import Thread
+
+
+
+def send_request_to_iot_panel(data):
+    url = "http://iot.sensifai.com:9090/api/v1/TAO37FyHZEIagFeh1Hb5/telemetry"
+    payload = json.dumps(data)
+    headers = {
+    'Content-Type': 'application/json'
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print(response.text)
 
 def get_data_from_server():
     url = "http://127.0.0.1:7418"
@@ -61,4 +73,8 @@ def get_data_from_server():
         config.Battery = data['battery']  # set new data for Battery
 
         config.log=str(data)
+        t = Thread(target=send_request_to_iot_panel,args=(data,))
+        t.start()
+        # send_request_to_iot_panel(data)
+        #dashboard http://iot.sensifai.com:9090/dashboard/a68e93e0-8c44-11ed-ab34-194fa8ffdeff?publicId=e125ce10-927a-11ed-9ada-194fa8ffdeff
 # img_path
