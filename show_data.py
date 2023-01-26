@@ -27,13 +27,6 @@ def show_data(self):
         elif config.AirQuality < 101:
             self.airLabel.setText("Hazardous")
 
-        self.alarmText = self.findChild(QLabel, "label_109")
-        self.alarm = self.findChild(QLabel, "label_108")
-        if config.dataOfCamera == False:
-            self.alarmText.setText(
-                "Ground station can not receive any data from camera")
-            self.alarm.setText("Alarm:")
-
         UVIndexValue = int(config.UVIndex)
         self.UVLabel = self.findChild(QLabel, "label_102")
         self.label_102.setFont(QFont("Arial [red]", 10))
@@ -184,3 +177,11 @@ def show_data(self):
             SsatelliteConnection.setPixmap(self.pixmapG)
         else:
             SsatelliteConnection.setPixmap(self.pixmapR)
+
+        #log
+        self.alarmText = self.findChild(QLabel, "label_109")
+        if config.dataOfCamera == False:
+            self.alarmText.setText(
+                "warinig: Ground station can not receive any data from camera")
+        self.alarmText.setText('info: '+config.log )
+        

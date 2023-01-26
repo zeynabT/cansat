@@ -46,6 +46,8 @@ coordinate = (CoordinateX, CoordinateY)
 
 Battery=100
 
+log=''
+
 sensorPressure = True
 sensorAcceleration = True
 sensorTemp = True

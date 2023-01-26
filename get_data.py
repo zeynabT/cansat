@@ -59,4 +59,6 @@ def get_data_from_server():
 
         #Battery
         config.Battery = data['battery']  # set new data for Battery
+
+        config.log=str(data)
 # img_path

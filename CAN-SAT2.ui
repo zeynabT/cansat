@@ -2394,35 +2394,17 @@ image: url(:/newPrefix/logo.jpg);</string>
       <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_108">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>0</y>
-       <width>51</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-margin-bottom: 1px;</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
     <widget class="QLabel" name="label_109">
      <property name="geometry">
       <rect>
-       <x>206</x>
+       <x>156</x>
        <y>-1</y>
-       <width>471</width>
+       <width>881</width>
        <height>31</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">
-margin-top: 1px;
+      <string notr="true">margin-top: 1px;
 </string>
      </property>
      <property name="text">

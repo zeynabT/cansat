@@ -44,21 +44,11 @@ class Ui(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(Ui, self).__init__()
         uic.loadUi('CAN-SAT2.ui', self)
-        # Good = "Good"
-        # Low = "Low"
-        # Moderate = "Moderate"
-        # Heigh = "Heigh"
-        # VeryHeigh = "Very Heigh"
-        # Extreme = "Extreme"
 
         # alarm
         self.alarmText = self.findChild(QLabel, "label_109")
         self.label_109.setFont(QFont('Arial', 11))
-        self.alarmText.setStyleSheet("color: rgb(175, 0,3)")
-
-        self.alarm = self.findChild(QLabel, "label_108")
-        self.label_108.setFont(QFont('Arial', 11))
-        self.alarm.setStyleSheet("color: rgb(175, 0,3)")
+        self.alarmText.setStyleSheet("color: green")
 
         self.Coordinate_x = self.findChild(QLabel, "label_103")
         self.Coordinate_x.setText(str(self.CoordinateX))
@@ -173,7 +163,7 @@ class Ui(QtWidgets.QMainWindow):
         ILogo.setPixmap(pixmap)
 
         receivedImage = QLabel()
-        pixmap = QPixmap('img/image1.jpg')
+        pixmap = QPixmap('img/1.jpg')
         low_rez = QtCore.QSize(321, 200)
         pixmap = pixmap.scaled(low_rez)
         receivedImage.setPixmap(pixmap)
@@ -213,14 +203,6 @@ class Ui(QtWidgets.QMainWindow):
         webView.setHtml(data.getvalue().decode())
         webView.setParent(self.findChild(QWidget, "widget_9"))
         webView.setStyleSheet("border-radius: 30px;")
-
-        # linearProgressbar
-        # self.progressBar_3.setStyleSheet(
-        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        # self.progressBar_4.setStyleSheet(
-        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        # self.progressBar_5.setStyleSheet(
-        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
 
         # linearProgressbar
         self.progressBar_3.setStyleSheet(
