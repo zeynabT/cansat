@@ -215,12 +215,12 @@ class Ui(QtWidgets.QMainWindow):
         webView.setStyleSheet("border-radius: 30px;")
 
         # linearProgressbar
-        self.progressBar_3.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_4.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_5.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        # self.progressBar_3.setStyleSheet(
+        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        # self.progressBar_4.setStyleSheet(
+        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+        # self.progressBar_5.setStyleSheet(
+        #     "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
 
         # linearProgressbar
         self.progressBar_3.setStyleSheet(
@@ -232,7 +232,8 @@ class Ui(QtWidgets.QMainWindow):
 
         # Battery
         self.progressBar_2.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
+            "border-radius: 7px;min-height: 15px;max-height: 15px;text-align: center;color:white")
+        self.progressBar_2.setValue(99)
 
         # height
         self.graphWidget = pg.PlotWidget()
@@ -252,6 +253,16 @@ class Ui(QtWidgets.QMainWindow):
         self.show()
 
     def launch(self):
+        # progressBar_2
+        worker_2 = ProgressWorker()
+        worker_2.value_change.connect(self.progressBar_2.setValue)
+        threading.Thread(
+            target=long_running_function,
+            args=("Battery",),
+            kwargs=dict(baz="baz", worker=worker_2),
+            daemon=True,
+        ).start()
+
         # progressBar_3
         worker_3 = ProgressWorker()
         worker_3.value_change.connect(self.progressBar_3.setValue)

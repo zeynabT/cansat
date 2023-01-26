@@ -56,4 +56,7 @@ def get_data_from_server():
         # set new data for x_height
         config.x_height.append(len(config.x_height))
         config.y_height.append(data['height'])
+
+        #Battery
+        config.Battery = data['battery']  # set new data for Battery
 # img_path

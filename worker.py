@@ -60,6 +60,8 @@ def long_running_function(who, baz="0", worker=None):
             value = config.Pressure
         if who == 'UVIndex':
             value = config.UVIndex
+        if who == 'Battery':
+            value = config.Battery
         worker.percentage = value
         time.sleep(1)
         worker.finish()
