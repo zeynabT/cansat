@@ -49,10 +49,19 @@ def show_data(self):
         self.Coordinate_y = str(self.CoordinateY)
         self.coordinate = (self.CoordinateX, self.CoordinateY)
 
-        self.LA_angular = self.findChild(QLabel, "label_96")
-        self.LA_angular.setText(str(config.A_angular))
-        self.LA_linear = self.findChild(QLabel, "label_97")
-        self.LA_linear.setText(str(config.A_linear))
+        self.LA_angularX = self.findChild(QLabel, "label_96")
+        self.LA_angularX.setText(str(config.A_angularX))
+        self.LA_angularY = self.findChild(QLabel, "label_108")
+        self.LA_angularY.setText(str(config.A_angularY))
+        self.LA_angularZ = self.findChild(QLabel, "label_121")
+        self.LA_angularZ.setText(str(config.A_angularZ))
+
+        self.LA_linearX = self.findChild(QLabel, "label_97")
+        self.LA_linearX.setText(str(config.A_linearX))
+        self.LA_linearY = self.findChild(QLabel, "label_123")
+        self.LA_linearY.setText(str(config.A_linearY))
+        self.LA_linearZ = self.findChild(QLabel, "label_124")
+        self.LA_linearZ.setText(str(config.A_linearZ))
 
         self.LAirQuality = self.findChild(QLabel, "label_52")
         self.LAirQuality.setText(str(config.AirQuality))
@@ -128,7 +137,6 @@ def show_data(self):
 
 
         self.graphWidget.plot(config.x_height, config.y_height)
-        # self.graphWidget.addItem(config.x_height, config.y_height)
 
         SPressure = self.findChild(QLabel, "label_110")
         if config.sensorPressure:

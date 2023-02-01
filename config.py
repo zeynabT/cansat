@@ -1,5 +1,9 @@
-A_angular = 0
-A_linear = 0
+A_angularX = 0
+A_angularY = 0
+A_angularZ = 0
+A_linearX = 0
+A_linearY = 0
+A_linearZ = 0
 Pressure = 0
 Pressure_1 = 0
 Pressure_2 = 0
@@ -37,6 +41,7 @@ UVIndex = 0
 x_height=[]
 y_height=[]
 
+time=0
 #####################################
 CoordinateX = 36.31130898586006
 CoordinateY = 59.526375931025

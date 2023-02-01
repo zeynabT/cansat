@@ -6,7 +6,7 @@ app = Flask(__name__)
 temp = 30
 perssor = 40
 data=[]
-battery=100
+battery=100 # battray jori set beshe ke 2 saat tamom beshe
 height=100
 @app.route('/', methods=['GET'])
 def data():
@@ -24,8 +24,12 @@ def data():
         "inside_temp": secrets.randbelow(100),
         "humidity": secrets.randbelow(100),
         "air_quality": secrets.randbelow(100),
-        "linear": secrets.randbelow(10),
-        "angular": secrets.randbelow(10),
+        "linearX": secrets.randbelow(10),
+        "linearY": secrets.randbelow(10),
+        "linearZ": secrets.randbelow(10),
+        "angularX": secrets.randbelow(10),
+        "angularY": secrets.randbelow(10),
+        "angularZ": secrets.randbelow(10),
         "pressure": secrets.randbelow(100),
         "uv_index": secrets.randbelow(100),
         "height": height,
