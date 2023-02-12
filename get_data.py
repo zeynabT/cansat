@@ -16,9 +16,8 @@ def send_request_to_iot_panel(data):
     print(response.text)
 
 
-
 def get_data_from_server():
-    url = "http://127.0.0.1:7418"
+    url = "http://192.168.137.83:7418"
     payload = {}
     headers = {}
     for i in range(200):
@@ -29,6 +28,8 @@ def get_data_from_server():
         # payloader2=data_res['payloader2']
         for paload in payloader1:
             d = paload.split('_')
+            if len(d)<2:
+                continue
             if d[1] == 'Lx':
                 config.CoordinateX = float(d[2])
             if d[1] == 'Ly':
@@ -72,14 +73,14 @@ def get_data_from_server():
             if d[1] == 'L':
                 config.x_height.append(len(config.x_height))
                 config.y_height.append(float(d[2]))
-            if d[1]=='P':
+            if d[1] == 'P':
                 config.Pressure_6 = config.Pressure_5
                 config.Pressure_5 = config.Pressure_4
                 config.Pressure_4 = config.Pressure_3
                 config.Pressure_3 = config.Pressure_2
                 config.Pressure_2 = config.Pressure_1
                 config.Pressure_1 = config.Pressure
-                config.Pressure=float(d[2])
+                config.Pressure = float(d[2])
 
             config.log = str(response.text)
             # t = Thread(target=send_request_to_iot_panel, args=(data,))
