@@ -1,16 +1,17 @@
 
 import time
 import secrets
-from PyQt5.QtWidgets import QLabel,QWidget
+from PyQt5.QtWidgets import QLabel, QWidget
 from PyQt5.QtGui import QFont
 import config
 
 
 def show_data(self):
 
-    for i in range(200):
+    for i in range(7200):
         time.sleep(1)
-
+        if i % 72 == 0:
+            config.Battery -= 1
         # Discription label for UV & air quality
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
@@ -74,7 +75,6 @@ def show_data(self):
         self.LCoordinate_y = self.findChild(QLabel, "label_105")
         self.LCoordinate_y.setText(self.Coordinate_y)
 
-
         self.LPressure = self.findChild(QLabel, "label_2")
         self.LPressure.setText(str(config.Pressure))
         self.LPressure_1 = self.findChild(QLabel, "label_67")
@@ -135,7 +135,6 @@ def show_data(self):
         self.LHiumidity_6 = self.findChild(QLabel, "label_64")
         self.LHiumidity_6.setText(str(config.Hiumidity_6))
 
-
         self.graphWidget.plot(config.x_height, config.y_height)
 
         SPressure = self.findChild(QLabel, "label_110")
@@ -186,10 +185,9 @@ def show_data(self):
         else:
             SsatelliteConnection.setPixmap(self.pixmapR)
 
-        #log
+        # log
         self.alarmText = self.findChild(QLabel, "label_109")
         if config.dataOfCamera == False:
             self.alarmText.setText(
                 "warinig: Ground station can not receive any data from camera")
-        self.alarmText.setText('info: '+config.log )
-        
+        self.alarmText.setText('info: '+config.log)

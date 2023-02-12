@@ -49,7 +49,7 @@ Coordinate_x = str(CoordinateX)
 Coordinate_y = str(CoordinateY)
 coordinate = (CoordinateX, CoordinateY)
 
-Battery=100
+Battery=101
 
 log=''
 

@@ -17,7 +17,8 @@ def send_request_to_iot_panel(data):
 
 
 def get_data_from_server():
-    url = "http://192.168.137.83:7418"
+    # url = "http://192.168.137.83:7418"
+    url = "http://127.0.0.1:7418"
     payload = {}
     headers = {}
     for i in range(200):
