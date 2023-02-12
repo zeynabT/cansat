@@ -1,24 +1,40 @@
-file=open('picture/final_data.bin','rb')
-output=''
-output=((file.read()))
-print()
+
+
+file = open('picture/final_data2.bin', 'rb')
+output = ''
+output = file.read()
+
+black_img = 'picture/black.jpg'
+black_file = open(black_img, "rb")
+black_file = black_file.read()
+
 
 payloader = bytearray()
-
-for i in range(int(len(output)/28)+1):
-    s1=output[:len(str(i))]
-    output=output[len(str(i)):]
-    s2=output[:28]
-    output=output[28:]
-    payloader+=s2
+sum = 0
+for i in range(int(len(output)/32)+1):
+    s1 = output[:6]
+    s1 = int(s1.decode())-100000
+    output = output[6:]
+    s2 = output[:26]
+    output = output[26:]
+    if (500< s1 and s1<1000):
+        sum += 1
+        # payloader += black_file[(s1*26):((s1+1)*26)+1]
+        payloader += s2
     print(s1)
-    print(s2)
 
+
+# from PIL import Image
+# from io import BytesIO
+
+# im = Image.open(BytesIO(payloader))
+
+# # Display image
+# im.show()
+# print(im)
 fileT = open('picture/decode.jpg', "wb")
 fileT.write(payloader)
 fileT.close()
-
-
 
 
 
