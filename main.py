@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic
 from PyQt5 import QtCore, QtGui, QtWidgets, QtMultimedia
-from PyQt5.QtWidgets import QLabel, QApplication, QWidget, QHBoxLayout, QVBoxLayout
+from PyQt5.QtWidgets import QLabel, QApplication, QWidget
 from PyQt5.QtGui import QFont, QPixmap
 import sys
 import pyqtgraph as pg
@@ -32,14 +32,15 @@ def sound():
 
 class Ui(QtWidgets.QMainWindow):
 
-    CoordinateX = 36.31130898586006
-    CoordinateY = 59.526375931025
-    Coordinate_x = str(CoordinateX)
-    Coordinate_y = str(CoordinateY)
-    coordinate = (CoordinateX, CoordinateY)
+    # CoordinateX = 36.31130898586006
+    # CoordinateY = 59.526375931025
+    # Coordinate_x = str(CoordinateX)
+    # Coordinate_y = str(CoordinateY)
+    # coordinate = (CoordinateX, CoordinateY)
 
     pixmapG = ''
     pixmapR = ''
+    webView=''
 
     def __init__(self, parent=None):
         super(Ui, self).__init__()
@@ -50,10 +51,10 @@ class Ui(QtWidgets.QMainWindow):
         self.label_109.setFont(QFont('Arial', 11))
         self.alarmText.setStyleSheet("color: green")
 
-        self.Coordinate_x = self.findChild(QLabel, "label_103")
-        self.Coordinate_x.setText(str(self.CoordinateX))
-        self.Coordinate_y = self.findChild(QLabel, "label_105")
-        self.Coordinate_y.setText(str(self.CoordinateY))
+        Coordinate_x = self.findChild(QLabel, "label_103")
+        Coordinate_x.setText(str(config.CoordinateX))
+        Coordinate_y = self.findChild(QLabel, "label_105")
+        Coordinate_y.setText(str(config.CoordinateY))
 
         self.airLabel = self.findChild(QLabel, "label_101")
         self.label_101.setFont(QFont('Arial', 10))
@@ -189,21 +190,6 @@ class Ui(QtWidgets.QMainWindow):
         # sys.exit(app2.exec_())
         # sound()
 
-        # Map
-        m = folium.Map(
-            tiles='Stamen Terrain',
-            zoom_start=13,
-            location=self.coordinate
-        )
-        # save map data to data object
-        data = io.BytesIO()
-        m.save(data, close_file=False)
-
-        webView = QWebEngineView()
-        webView.setHtml(data.getvalue().decode())
-        webView.setParent(self.findChild(QWidget, "widget_9"))
-        webView.setStyleSheet("border-radius: 30px;")
-
         # linearProgressbar
         self.progressBar_3.setStyleSheet(
             "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
@@ -225,14 +211,38 @@ class Ui(QtWidgets.QMainWindow):
         self.graphWidget.setGeometry(0, 0, 321, 191)
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
 
+        # Map
+        m = folium.Map(
+            tiles='OpenStreetMap',
+            zoom_start=21,
+            location=(config.CoordinateX, config.CoordinateY),
+            width=321,
+            height=161
+        )
+        folium.Marker(
+            location=[config.CoordinateX, config.CoordinateY],
+            popup='fumcan',
+        ).add_to(m)
+        # save map data to data object
+        data = io.BytesIO()
+        m.save(data, close_file=False)
+        
+        self.webView = QWebEngineView()
+        self.webView.setHtml(data.getvalue().decode())
+        self.webView.setStyleSheet("border-radius: 30px;")
+        self.webView.setParent(self.findChild(QWidget, "widget_9"))
+
+
         get_data_t = Thread(target=get_data_from_server)
         get_data_t.start()
 
-        t = Thread(target=show_data, args=(self,))
+
+        t = Thread(target=show_data, args=(self,),daemon=True)
         t.start()
 
         self.launch()
         self.show()
+
 
     def launch(self):
         # progressBar_2
@@ -276,63 +286,8 @@ class Ui(QtWidgets.QMainWindow):
         ).start()
 
 
-# map
-class MyApp(QWidget):
-    def __init__(self, webveiw):
-        self.webview = webveiw
-        super().__init__()
-        self.setWindowTitle('Folium in PyQt Example')
-        self.window_width, self.window_height = 1000, 1000
-        self.setMinimumSize(self.window_width, self.window_height)
-
-        layout = QVBoxLayout()
-        self.setLayout(layout)
-
-        x = 37.8199286
-        y = -122.4782551
-        coordinate = (x, y)
-
-        m = folium.Map(
-            tiles='Stamen Terrain',
-            zoom_start=13,
-            location=coordinate
-        )
-
-        # save map data to data object
-        data = io.BytesIO()
-        m.save(data, close_file=False)
-
-        webview = QWebEngineView()
-        webview.setHtml(data.getvalue().decode())
-        layout.addWidget(webview)
-        self.show()
-
-
-# progressBar
-# class MyWidget(QtWidgets.QWidget):
-#     def __init__(self):
-#         QtWidgets.QWidget.__init__(self)
-
-#         # CLASS INSTANCE
-#         self.rpb = roundProgressBar()
-#         # LINE WIDTH
-#         self.rpb.rpb_setLineWidth(10)
-#         # LINE CAP
-#         self.rpb.rpb_setLineCap('RoundCap')
-#         self.rpb.rpb_setValue(45)
-
-#         self.layout = QtWidgets.QHBoxLayout()
-#         self.layout.addWidget(self.rpb)
-#         self.setLayout(self.layout)
-
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     ui = Ui()
     app.exec_()
-    # app.setStyleSheet('''
-    #     QWidget {
-    #         font-size: 35px;
-    #     }
-    # ''')
-
+    print('GodBy')

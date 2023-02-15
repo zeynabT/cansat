@@ -43,11 +43,8 @@ y_height=[]
 
 time=0
 #####################################
-CoordinateX = 36.31130898586006
-CoordinateY = 59.526375931025
-Coordinate_x = str(CoordinateX)
-Coordinate_y = str(CoordinateY)
-coordinate = (CoordinateX, CoordinateY)
+CoordinateX = 36.308314
+CoordinateY = 59.529174
 
 Battery=101
 

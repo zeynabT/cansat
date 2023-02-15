@@ -1,9 +1,11 @@
 
 import time
-import secrets
 from PyQt5.QtWidgets import QLabel, QWidget
 from PyQt5.QtGui import QFont
 import config
+import folium
+import io
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 
 def show_data(self):
@@ -44,12 +46,6 @@ def show_data(self):
         elif UVIndexValue < 101:
             self.UVLabel.setText("Hazardous")
 
-        self.CoordinateX = self.CoordinateX+1
-        self.CoordinateY = self.CoordinateY + 1
-        self.Coordinate_x = str(self.CoordinateX)
-        self.Coordinate_y = str(self.CoordinateY)
-        self.coordinate = (self.CoordinateX, self.CoordinateY)
-
         self.LA_angularX = self.findChild(QLabel, "label_96")
         self.LA_angularX.setText(str(config.A_angularX))
         self.LA_angularY = self.findChild(QLabel, "label_108")
@@ -71,9 +67,9 @@ def show_data(self):
         self.LUVIndex.setText(str(config.UVIndex))
 
         self.LCoordinate_x = self.findChild(QLabel, "label_103")
-        self.LCoordinate_x.setText(self.Coordinate_x)
+        self.LCoordinate_x.setText(str(config.CoordinateX))
         self.LCoordinate_y = self.findChild(QLabel, "label_105")
-        self.LCoordinate_y.setText(self.Coordinate_y)
+        self.LCoordinate_y.setText(str(config.CoordinateY))
 
         self.LPressure = self.findChild(QLabel, "label_2")
         self.LPressure.setText(str(config.Pressure))
@@ -184,6 +180,26 @@ def show_data(self):
             SsatelliteConnection.setPixmap(self.pixmapG)
         else:
             SsatelliteConnection.setPixmap(self.pixmapR)
+
+        # # Map
+        # m = folium.Map(
+        #     tiles='OpenStreetMap',
+        #     zoom_start=21,
+        #     location=(36.318532, 59.525929),
+        #     width=321,
+        #     height=161
+        # )
+        # folium.Marker(
+        #     location=[36.318532, 59.525929],
+        #     popup='fumcan',
+        # ).add_to(m)
+        # # save map data to data object
+        # data = io.BytesIO()
+        # m.save(data, close_file=False)
+        # self.webView = QWebEngineView()
+        # self.webView.setHtml(data.getvalue().decode())
+        # self.webView.setStyleSheet("border-radius: 30px;")
+        # self.webView.setParent(self.findChild(QWidget, "widget_9"))
 
         # log
         self.alarmText = self.findChild(QLabel, "label_109")

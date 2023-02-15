@@ -27,7 +27,7 @@ CE_PIN = DigitalInOut(board.D22)  # using pin gpio22 (BCM numbering)
 
 # initialize the nRF24L01 on the spi bus object
 nrf = RF24(SPI_BUS, CSN_PIN, CE_PIN)
-
+# power to send data
 nrf.pa_level = 0
 
 # addresses needs to be in a buffer protocol object (bytearray)
@@ -44,7 +44,7 @@ nrf.dynamic_payloads = True
 
 RF24.data_rate = 250
 RF24.channel = 22
-RF24.arc = 2
+RF24.arc = 6
 RF24.auto_ack = True
 
 timeout = 3*3600
@@ -68,7 +68,7 @@ def slave(timeout):
             payload_size, pipe_number = (nrf.any(), nrf.pipe)
             # fetch 1 payload from RX FIFO
             buffer = nrf.read()  # also clears nrf.irq_dr status flag
-            print(buffer)
+
             if pipe_number == 1:
                 data['payloader1'].append(buffer.decode())
             else:
