@@ -32,35 +32,19 @@ def sound():
 
 class Ui(QtWidgets.QMainWindow):
 
-    # CoordinateX = 36.31130898586006
-    # CoordinateY = 59.526375931025
-    # Coordinate_x = str(CoordinateX)
-    # Coordinate_y = str(CoordinateY)
-    # coordinate = (CoordinateX, CoordinateY)
-
     pixmapG = ''
     pixmapR = ''
-    webView=''
+    webView = ''
 
     def __init__(self, parent=None):
         super(Ui, self).__init__()
         uic.loadUi('CAN-SAT2.ui', self)
 
-        # alarm
-        self.alarmText = self.findChild(QLabel, "label_109")
-        self.label_109.setFont(QFont('Arial', 11))
-        self.alarmText.setStyleSheet("color: green")
-
         Coordinate_x = self.findChild(QLabel, "label_103")
-        Coordinate_x.setText(str(config.CoordinateX))
+        Coordinate_x.setText(str(config.coordinate_x))
         Coordinate_y = self.findChild(QLabel, "label_105")
-        Coordinate_y.setText(str(config.CoordinateY))
+        Coordinate_y.setText(str(config.coordinate_y))
 
-        self.airLabel = self.findChild(QLabel, "label_101")
-        self.label_101.setFont(QFont('Arial', 10))
-
-        self.UVLabel = self.findChild(QLabel, "label_102")
-        self.label_102.setFont(QFont('Arial', 10))
         self.iconText = self.setWindowTitle("FUM_CAN")
         self.windowIcon = self.setWindowIcon(QtGui.QIcon('img/logo-white.jpg'))
 
@@ -190,24 +174,11 @@ class Ui(QtWidgets.QMainWindow):
         # sys.exit(app2.exec_())
         # sound()
 
-        # linearProgressbar
-        self.progressBar_3.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_4.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-        self.progressBar_5.setStyleSheet(
-            "border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center")
-
-        # Battery
-        self.progressBar_2.setStyleSheet(
-            "border-radius: 7px;min-height: 15px;max-height: 15px;text-align: center;color:white")
-        self.progressBar_2.setValue(99)
-
         # height
         self.graphWidget = pg.PlotWidget()
 
         self.graphWidget.setBackground('w')
-        self.graphWidget.plot(config.x_height, config.y_height)
+        self.graphWidget.plot(config.height_x, config.height_y)
         self.graphWidget.setGeometry(0, 0, 321, 191)
         self.graphWidget.setParent(self.findChild(QWidget, "widget_5"))
 
@@ -215,34 +186,31 @@ class Ui(QtWidgets.QMainWindow):
         m = folium.Map(
             tiles='OpenStreetMap',
             zoom_start=21,
-            location=(config.CoordinateX, config.CoordinateY),
+            location=(config.coordinate_x, config.coordinate_y),
             width=321,
             height=161
         )
         folium.Marker(
-            location=[config.CoordinateX, config.CoordinateY],
+            location=[config.coordinate_x, config.coordinate_y],
             popup='fumcan',
         ).add_to(m)
         # save map data to data object
         data = io.BytesIO()
         m.save(data, close_file=False)
-        
+
         self.webView = QWebEngineView()
         self.webView.setHtml(data.getvalue().decode())
         self.webView.setStyleSheet("border-radius: 30px;")
         self.webView.setParent(self.findChild(QWidget, "widget_9"))
 
-
         get_data_t = Thread(target=get_data_from_server)
         get_data_t.start()
 
-
-        t = Thread(target=show_data, args=(self,),daemon=True)
+        t = Thread(target=show_data, args=(self,), daemon=True)
         t.start()
 
         self.launch()
         self.show()
-
 
     def launch(self):
         # progressBar_2

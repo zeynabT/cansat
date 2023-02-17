@@ -32,56 +32,52 @@ def get_data_from_server():
             if len(d)<2:
                 continue
             if d[1] == 'Lx':
-                config.CoordinateX = float(d[2])
+                config.coordinate_x = float(d[2])
             if d[1] == 'Ly':
-                config.CoordinateY = float(d[2])
+                config.coordinate_y = float(d[2])
             if d[1] == 'A':
                 acceleration = d[2].split('*')
-                config.A_linearX = float(acceleration[0])
-                config.A_linearY = float(acceleration[1])
-                config.A_linearZ = float(acceleration[2])
+                config.acceleration_linear_x = float(acceleration[0])
+                config.acceleration_linear_y = float(acceleration[1])
+                config.acceleration_linear_z = float(acceleration[2])
             if d[1] == 'Z':
                 acceleration = d[2].split('*')
-                config.A_angularX = float(acceleration[0])
-                config.A_angularY = float(acceleration[1])
-                config.A_angularZ = float(acceleration[2])
+                config.acceleration_angular_x = float(acceleration[0])
+                config.acceleration_angular_y = float(acceleration[1])
+                config.acceleration_angular_z = float(acceleration[2])
             if d[1] == 'Ti':
-                config.InTemp_6 = config.InTemp_5
-                config.InTemp_5 = config.InTemp_4
-                config.InTemp_4 = config.InTemp_3
-                config.InTemp_3 = config.InTemp_2
-                config.InTemp_2 = config.InTemp_1
-                config.InTemp_1 = config.InTemp
-                config.InTemp = float(d[2])
+                config.in_temp_5 = config.in_temp_4
+                config.in_temp_4 = config.in_temp_3
+                config.in_temp_3 = config.in_temp_2
+                config.in_temp_2 = config.in_temp_1
+                config.in_temp_1 = config.in_temp
+                config.in_temp = float(d[2])
             if d[1] == 'To':
-                config.OutTemp_6 = config.OutTemp_5
-                config.OutTemp_5 = config.OutTemp_4
-                config.OutTemp_4 = config.OutTemp_3
-                config.OutTemp_3 = config.OutTemp_2
-                config.OutTemp_2 = config.OutTemp_1
-                config.OutTemp_1 = config.OutTemp
-                config.OutTemp = float(d[2])
+                config.out_temp_6 = config.out_temp_5
+                config.out_temp_5 = config.out_temp_4
+                config.out_temp_4 = config.out_temp_3
+                config.out_temp_3 = config.out_temp_2
+                config.out_temp_2 = config.out_temp_1
+                config.out_temp_1 = config.out_temp
+                config.out_temp = float(d[2])
             if d[1] == 'U':
-                config.UVIndex = float(d[2])
+                sunlight=d[2].splite('*')
+                config.sunlight_infrared=sunlight[2]
+                config.sunlight_spectrum=sunlight[1]
+                config.sunlight_visible=sunlight[0]
             if d[1] == 'H':
-                config.Hiumidity_6 = config.Hiumidity_5
-                config.Hiumidity_5 = config.Hiumidity_4
-                config.Hiumidity_4 = config.Hiumidity_3
-                config.Hiumidity_3 = config.Hiumidity_2
-                config.Hiumidity_2 = config.Hiumidity_1
-                config.Hiumidity_1 = config.Hiumidity
-                config.Hiumidity = float(d[2])
+                config.hiumidity = float(d[2])
             if d[1] == 'L':
-                config.x_height.append(len(config.x_height))
-                config.y_height.append(float(d[2]))
+                config.height_x.append(len(config.height_y))
+                config.height_y.append(float(d[2]))
             if d[1] == 'P':
-                config.Pressure_6 = config.Pressure_5
-                config.Pressure_5 = config.Pressure_4
-                config.Pressure_4 = config.Pressure_3
-                config.Pressure_3 = config.Pressure_2
-                config.Pressure_2 = config.Pressure_1
-                config.Pressure_1 = config.Pressure
-                config.Pressure = float(d[2])
+                config.pressure_6 = config.pressure_5
+                config.pressure_5 = config.pressure_4
+                config.pressure_4 = config.pressure_3
+                config.pressure_3 = config.pressure_2
+                config.pressure_2 = config.pressure_1
+                config.pressure_1 = config.pressure
+                config.pressure = float(d[2])
 
             config.log = str(response.text)
             # t = Thread(target=send_request_to_iot_panel, args=(data,))
