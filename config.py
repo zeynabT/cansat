@@ -1,61 +1,58 @@
-A_angularX = 0
-A_angularY = 0
-A_angularZ = 0
-A_linearX = 0
-A_linearY = 0
-A_linearZ = 0
-Pressure = 0
-Pressure_1 = 0
-Pressure_2 = 0
-Pressure_3 = 0
-Pressure_4 = 0
-Pressure_5 =0
-Pressure_6 = 0
+acceleration_angular_x = 0
+acceleration_angular_y = 0
+acceleration_angular_z = 0
 
-InTemp = 0
-InTemp_1 = 0
-InTemp_2 = 0
-InTemp_3 = 0
-InTemp_4 = 0
-InTemp_5 = 0
-InTemp_6 = 0
+acceleration_linear_x = 0
+acceleration_linear_y = 0
+acceleration_linear_z = 0
 
-OutTemp = 0
-OutTemp_1 = 0
-OutTemp_2 = 0
-OutTemp_3 = 0
-OutTemp_4 = 0
-OutTemp_5 = 0
-OutTemp_6 = 0
+pressure = 0
+pressure_1 = 0
+pressure_2 = 0
+pressure_3 = 0
+pressure_4 = 0
+pressure_5 = 0
+pressure_6 = 0
 
-Hiumidity = 0
-Hiumidity_1 = 0
-Hiumidity_2 = 0
-Hiumidity_3 = 0
-Hiumidity_4 = 0
-Hiumidity_5 = 0
-Hiumidity_6 = 0
+in_temp = 0
+in_temp_1 = 0
+in_temp_2 = 0
+in_temp_3 = 0
+in_temp_4 = 0
+in_temp_5 = 0
+in_temp_5 = 0
 
-AirQuality = 0
-UVIndex = 0
-x_height=[]
-y_height=[]
+out_temp = 0
+out_temp_1 = 0
+out_temp_2 = 0
+out_temp_3 = 0
+out_temp_4 = 0
+out_temp_5 = 0
+out_temp_6 = 0
 
-time=0
+hiumidity = 0
+
+sunlight_visible = 0
+sunlight_infrared = 0
+sunlight_spectrum = 0
+
+height_x = []
+height_y = []
+
+time = 0
 #####################################
-CoordinateX = 36.308314
-CoordinateY = 59.529174
+coordinate_x = 36.308314
+coordinate_y = 59.529174
 
-Battery=101
+battery = 101
 
-log=''
+log = ''
 
-sensorPressure = True
-sensorAcceleration = True
-sensorTemp = True
-sensorHumidity = True
-sensorAirQ = True
-sensorUV = True
-groundStationConnection = True
-satelliteConnection = True
-dataOfCamera = True
+sensor_pressure = True
+sensor_acceleration = True
+sensor_temp = True
+sensor_humidity = True
+sensor_sunlight = True
+ground_station_connection = True
+satellite_connection = True
+data_Of_Camera = True
