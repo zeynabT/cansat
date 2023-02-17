@@ -5,15 +5,19 @@ import secrets
 app = Flask(__name__)
 temp = 30
 perssor = 40
-data=[]
-battery=100 # battray jori set beshe ke 2 saat tamom beshe
-height=100
+data = []
+battery = 100  # battray jori set beshe ke 2 saat tamom beshe
+height = 100
+time = 1
+
+
 @app.route('/', methods=['GET'])
 def data():
-    global height
-    height=height-1
-    if height==1:
-        height=100
+    global height, time
+    height = height-1
+    if height == 1:
+        height = 100
+    time = time+1
     # payloader1 = {
     #     "outside_temp": secrets.randbelow(100),
     #     "inside_temp": secrets.randbelow(100),
@@ -31,21 +35,22 @@ def data():
     #     "battery":battery,
     #     "img_path": "https://s-rahmani.ir/me.jpg"
     # }
-    payloader1=[
-                '23_Lx_36.308314',
-                '23_Ly_59.529174',
-                '23_A_23*31*21',
-                '23_Z_12*41*21',
-                '23_Ti_32',
-                '23_To_32',
-                '23_U_20',
-                '23_H_10',
-                '23_L_250',
-                
-            ]
-    return {'payloader1':payloader1}
+    str_time = str(time)
+    rand = str(secrets.randbelow(100))
+    payloader1 = [
+        '{}_Lx_36.308314'.format(str_time),
+        '{}_Ly_59.529174'.format(str_time),
+        '{}_A_{}*{}*{}'.format(str_time, rand, rand, rand),
+        '{}_Z_{}*{}*{}'.format(str_time, rand, rand, rand),
+        '{}_Ti_{}'.format(str_time, rand),
+        '{}_To_{}'.format(str_time, rand),
+        '{}_U_{}*{}*{}'.format(str_time, rand, rand, rand),
+        '{}_H_{}'.format(str_time, rand),
+        '{}_L_{}'.format(str_time, height),
+        '{}_P_{}'.format(str_time, rand),
+    ]
+    return {'payloader1': payloader1, 'payloader2': 2}
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7418)
-

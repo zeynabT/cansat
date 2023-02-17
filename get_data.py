@@ -29,8 +29,9 @@ def get_data_from_server():
         # payloader2=data_res['payloader2']
         for paload in payloader1:
             d = paload.split('_')
-            if len(d)<2:
+            if len(d) < 2:
                 continue
+            config.time = int(d[0])
             if d[1] == 'Lx':
                 config.coordinate_x = float(d[2])
             if d[1] == 'Ly':
@@ -39,32 +40,33 @@ def get_data_from_server():
                 acceleration = d[2].split('*')
                 config.acceleration_linear_x = float(acceleration[0])
                 config.acceleration_linear_y = float(acceleration[1])
+                config.acceleration_linear_old_z = config.acceleration_linear_z
                 config.acceleration_linear_z = float(acceleration[2])
+                config.acceleration_linear_old_time = config.acceleration_linear_time
+                config.acceleration_linear_time = config.time
+                config.speed_6 = config.speed_5
+                config.speed_5 = config.speed_4
+                config.speed_4 = config.speed_3
+                config.speed_3 = config.speed_2
+                config.speed_2 = config.speed_1
+                config.speed_1 = config.speed
+                config.speed = ((config.acceleration_linear_z-config.acceleration_linear_old_z)*(
+                    config.acceleration_linear_old_time-config.time))/2
+
             if d[1] == 'Z':
                 acceleration = d[2].split('*')
                 config.acceleration_angular_x = float(acceleration[0])
                 config.acceleration_angular_y = float(acceleration[1])
                 config.acceleration_angular_z = float(acceleration[2])
             if d[1] == 'Ti':
-                config.in_temp_5 = config.in_temp_4
-                config.in_temp_4 = config.in_temp_3
-                config.in_temp_3 = config.in_temp_2
-                config.in_temp_2 = config.in_temp_1
-                config.in_temp_1 = config.in_temp
                 config.in_temp = float(d[2])
             if d[1] == 'To':
-                config.out_temp_6 = config.out_temp_5
-                config.out_temp_5 = config.out_temp_4
-                config.out_temp_4 = config.out_temp_3
-                config.out_temp_3 = config.out_temp_2
-                config.out_temp_2 = config.out_temp_1
-                config.out_temp_1 = config.out_temp
                 config.out_temp = float(d[2])
             if d[1] == 'U':
-                sunlight=d[2].splite('*')
-                config.sunlight_infrared=sunlight[2]
-                config.sunlight_spectrum=sunlight[1]
-                config.sunlight_visible=sunlight[0]
+                sunlight = d[2].split('*')
+                config.sunlight_infrared = sunlight[2]
+                config.sunlight_spectrum = sunlight[1]
+                config.sunlight_visible = sunlight[0]
             if d[1] == 'H':
                 config.hiumidity = float(d[2])
             if d[1] == 'L':

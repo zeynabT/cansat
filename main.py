@@ -55,11 +55,11 @@ class Ui(QtWidgets.QMainWindow):
         pixmap = pixmap.scaled(low_rez)
         IPressure.setPixmap(pixmap)
 
-        IAcceleration = self.findChild(QLabel, "label_6")
-        pixmap = QPixmap('img/Acceleration.jpg')
-        low_rez = QtCore.QSize(25, 25)
-        pixmap = pixmap.scaled(low_rez)
-        IAcceleration.setPixmap(pixmap)
+        # IAcceleration = self.findChild(QLabel, "label_6")
+        # pixmap = QPixmap('img/Acceleration.jpg')
+        # low_rez = QtCore.QSize(25, 25)
+        # pixmap = pixmap.scaled(low_rez)
+        # IAcceleration.setPixmap(pixmap)
 
         IInTemp = self.findChild(QLabel, "label_7")
         pixmap = QPixmap('img/icons8-temperature-inside2.jpg')
@@ -78,21 +78,16 @@ class Ui(QtWidgets.QMainWindow):
         pixmap = pixmap.scaled(low_rez)
         IHiumidity.setPixmap(pixmap)
 
-        IAirQuality = self.findChild(QLabel, "label_10")
-        pixmap = QPixmap('img/wind2.jpg')
-        pixmap = pixmap.scaled(low_rez)
-        IAirQuality.setPixmap(pixmap)
-
         IUVIndex = self.findChild(QLabel, "label_11")
         pixmap = QPixmap('img/sun.jpg')
         pixmap = pixmap.scaled(low_rez)
         IUVIndex.setPixmap(pixmap)
 
-        ISensor = self.findChild(QLabel, "label_12")
-        pixmap = QPixmap('img/sensor.jpg')
-        low_rez = QtCore.QSize(25, 23)
-        pixmap = pixmap.scaled(low_rez)
-        ISensor.setPixmap(pixmap)
+        # ISensor = self.findChild(QLabel, "label_12")
+        # pixmap = QPixmap('img/sensor.jpg')
+        # low_rez = QtCore.QSize(25, 23)
+        # pixmap = pixmap.scaled(low_rez)
+        # ISensor.setPixmap(pixmap)
 
         ISensor_pressure = self.findChild(QLabel, "label_78")
         pixmap = QPixmap('img/pressure.jpg')
@@ -213,7 +208,7 @@ class Ui(QtWidgets.QMainWindow):
         self.show()
 
     def launch(self):
-        # progressBar_2
+        # progressBar_2 Battery
         worker_2 = ProgressWorker()
         worker_2.value_change.connect(self.progressBar_2.setValue)
         threading.Thread(
@@ -223,7 +218,7 @@ class Ui(QtWidgets.QMainWindow):
             daemon=True,
         ).start()
 
-        # progressBar_3
+        # progressBar_3 Pressure
         worker_3 = ProgressWorker()
         worker_3.value_change.connect(self.progressBar_3.setValue)
         threading.Thread(
@@ -233,22 +228,12 @@ class Ui(QtWidgets.QMainWindow):
             daemon=True,
         ).start()
 
-        # progressBar_4
-        worker_4 = ProgressWorker()
-        worker_4.value_change.connect(self.progressBar_4.setValue)
-        threading.Thread(
-            target=long_running_function,
-            args=("AirQuality",),
-            kwargs=dict(baz="baz", worker=worker_4),
-            daemon=True,
-        ).start()
-
         # progressBar_5
         worker_5 = ProgressWorker()
         worker_5.value_change.connect(self.progressBar_5.setValue)
         threading.Thread(
             target=long_running_function,
-            args=("UVIndex",),
+            args=("hiumidit",),
             kwargs=dict(baz="baz", worker=worker_5),
             daemon=True,
         ).start()

@@ -54,14 +54,12 @@ def long_running_function(who, baz="0", worker=None):
         worker = PWorker()
     worker.start()
     while True:
-        if who == 'AirQuality':
-            value = config.AirQuality
         if who == 'Pressure':
-            value = config.Pressure
-        if who == 'UVIndex':
-            value = config.UVIndex
+            value = config.pressure
+        if who == 'hiumidit':
+            value = config.hiumidity
         if who == 'Battery':
-            value = config.Battery
+            value = config.battery
         worker.percentage = value
         time.sleep(1)
         worker.finish()

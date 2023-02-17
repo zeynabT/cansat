@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1102</width>
-    <height>717</height>
+    <width>1101</width>
+    <height>710</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -390,26 +390,6 @@ border-radius: 20px ;
 border-width: 5rem;
 border: 1px solid  rgb(255, 255, 255);</string>
       </property>
-      <widget class="QLabel" name="label_6">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>0</y>
-         <width>31</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/Acceleration.jpg);
-border: 1rem solid black;
-margin-top: 3px;
-
-</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
@@ -748,23 +728,6 @@ border-radius: 20px ;
 border-width: 5rem;
 border: 1px solid  rgb(255, 255, 255);</string>
       </property>
-      <widget class="QLabel" name="label_7">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>31</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-temperature-inside-30 (1).jpg);
-border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_15">
        <property name="geometry">
         <rect>
@@ -1001,13 +964,13 @@ color: #F6F7FA;</string>
         <string notr="true">border: 1rem solid black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_40">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>140</x>
          <y>20</y>
          <width>47</width>
          <height>20</height>
@@ -1040,8 +1003,8 @@ border: 1px solid  rgb(255, 255, 255);</string>
       <widget class="QLabel" name="label_8">
        <property name="geometry">
         <rect>
-         <x>10</x>
-         <y>10</y>
+         <x>320</x>
+         <y>20</y>
          <width>31</width>
          <height>21</height>
         </rect>
@@ -1082,7 +1045,7 @@ color: #F6F7FA;
         <rect>
          <x>280</x>
          <y>20</y>
-         <width>47</width>
+         <width>21</width>
          <height>20</height>
         </rect>
        </property>
@@ -1187,6 +1150,23 @@ color: #F6F7FA;
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;° C&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_7">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>20</y>
+         <width>31</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/newPrefix/icons8-temperature-inside-30 (1).jpg);
+border: 1rem solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="widget_13" native="true">
@@ -1218,23 +1198,6 @@ border-radius: 20px ;
 border-width: 5rem;
 border: 1px solid  rgb(255, 255, 255);</string>
       </property>
-      <widget class="QLabel" name="label_9">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>31</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-humidity-30 (1).jpg);
-border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_17">
        <property name="geometry">
         <rect>
@@ -1261,7 +1224,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_134">
        <property name="geometry">
         <rect>
-         <x>50</x>
+         <x>80</x>
          <y>40</y>
          <width>71</width>
          <height>31</height>
@@ -1277,7 +1240,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_128">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>150</x>
          <y>40</y>
          <width>31</width>
          <height>31</height>
@@ -1293,7 +1256,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_133">
        <property name="geometry">
         <rect>
-         <x>170</x>
+         <x>210</x>
          <y>40</y>
          <width>71</width>
          <height>31</height>
@@ -1309,7 +1272,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_130">
        <property name="geometry">
         <rect>
-         <x>250</x>
+         <x>290</x>
          <y>40</y>
          <width>31</width>
          <height>31</height>
@@ -1325,7 +1288,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_132">
        <property name="geometry">
         <rect>
-         <x>320</x>
+         <x>360</x>
          <y>40</y>
          <width>81</width>
          <height>31</height>
@@ -1341,7 +1304,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_131">
        <property name="geometry">
         <rect>
-         <x>410</x>
+         <x>450</x>
          <y>40</y>
          <width>31</width>
          <height>31</height>
@@ -1352,6 +1315,23 @@ color: #F6F7FA;
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;24&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>40</y>
+         <width>31</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/newPrefix/icons8-sun-50.jpg);
+border: 1rem solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
@@ -1371,23 +1351,6 @@ border-radius: 20px ;
 border-width: 5rem;
 border: 1px solid  rgb(255, 255, 255);</string>
       </property>
-      <widget class="QLabel" name="label_11">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>31</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-sun-50.jpg);
-border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_19">
        <property name="geometry">
         <rect>
@@ -1414,7 +1377,7 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_100">
        <property name="geometry">
         <rect>
-         <x>20</x>
+         <x>60</x>
          <y>40</y>
          <width>31</width>
          <height>20</height>
@@ -1430,9 +1393,9 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_102">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>90</x>
          <y>40</y>
-         <width>71</width>
+         <width>51</width>
          <height>20</height>
         </rect>
        </property>
@@ -1460,6 +1423,23 @@ font: 10pt &quot;Segoe UI&quot;;</string>
         <number>24</number>
        </property>
       </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>40</y>
+         <width>31</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">image: url(:/newPrefix/icons8-humidity-30 (1).jpg);
+border: 1rem solid black;</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="widget_20" native="true">
       <property name="geometry">
@@ -1477,24 +1457,6 @@ border-radius: 20px ;
 border-width: 5rem;
 border: 1px solid  rgb(255, 255, 255);</string>
       </property>
-      <widget class="QLabel" name="label_12">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>31</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">image: url(:/newPrefix/icons8-sensor-30.jpg);
-border: 1rem solid black;
-margin-bottom: 2px;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_20">
        <property name="geometry">
         <rect>
@@ -1955,7 +1917,7 @@ margin-top: 2px;</string>
        <widget class="QLabel" name="label_106">
         <property name="geometry">
          <rect>
-          <x>50</x>
+          <x>60</x>
           <y>0</y>
           <width>51</width>
           <height>31</height>
@@ -1973,7 +1935,7 @@ margin-bottom: 6px;
 margin-top: 2px;</string>
         </property>
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;Air Q&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GSM&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -2467,7 +2429,7 @@ color:white</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1102</width>
+     <width>1101</width>
      <height>22</height>
     </rect>
    </property>
