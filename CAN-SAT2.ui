@@ -80,7 +80,7 @@ border: 1rem solid black;</string>
       <widget class="QLabel" name="label_13">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>10</y>
          <width>111</width>
          <height>21</height>
@@ -360,11 +360,14 @@ color: #F6F7FA;</string>
          <x>67</x>
          <y>53</y>
          <width>421</width>
-         <height>21</height>
+         <height>22</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border-radius:11px ;</string>
+        <string notr="true">border-radius: 7px;
+min-height: 20px;
+max-height: 20px;
+text-align: center</string>
        </property>
        <property name="value">
         <number>24</number>
@@ -410,7 +413,7 @@ margin-top: 3px;
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>20</x>
          <y>10</y>
          <width>161</width>
          <height>21</height>
@@ -765,9 +768,9 @@ border: 1rem solid black;</string>
       <widget class="QLabel" name="label_15">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>10</y>
-         <width>121</width>
+         <x>20</x>
+         <y>20</y>
+         <width>61</width>
          <height>21</height>
         </rect>
        </property>
@@ -782,39 +785,7 @@ color: #F6F7FA;
 </string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffffff;&quot;&gt;Inside Temp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>21</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;30 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_23">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>30</y>
-         <width>47</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;° C&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speed&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_24">
@@ -1017,6 +988,38 @@ color: #F6F7FA;</string>
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;31&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>20</y>
+         <width>21</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1rem solid black;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_40">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>20</y>
+         <width>47</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1rem solid black;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;m/s&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QWidget" name="widget_21" native="true">
       <property name="geometry">
@@ -1054,9 +1057,9 @@ border: 1rem solid black;</string>
       <widget class="QLabel" name="label_16">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>10</y>
-         <width>131</width>
+         <x>20</x>
+         <y>20</y>
+         <width>121</width>
          <height>21</height>
         </rect>
        </property>
@@ -1071,14 +1074,14 @@ color: #F6F7FA;
 </string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; color:#ffffff;&quot;&gt;Outside Temp&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Temperature&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_36">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>30</y>
+         <x>280</x>
+         <y>20</y>
          <width>47</width>
          <height>20</height>
         </rect>
@@ -1093,8 +1096,8 @@ color: #F6F7FA;
       <widget class="QLabel" name="label_37">
        <property name="geometry">
         <rect>
-         <x>20</x>
-         <y>30</y>
+         <x>260</x>
+         <y>20</y>
          <width>21</width>
          <height>20</height>
         </rect>
@@ -1106,203 +1109,82 @@ color: #F6F7FA;
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>20</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1rem solid black;
+font-family: 'Courier New';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+color: #F6F7FA;
+</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Inside=&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
       <widget class="QLabel" name="label_38">
        <property name="geometry">
         <rect>
-         <x>260</x>
-         <y>10</y>
-         <width>61</width>
+         <x>350</x>
+         <y>20</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border: 1rem solid black;
+font-family: 'Courier New';
+font-style: normal;
+font-weight: 700;
+font-size: 16px;
+line-height: 18px;
+color: #F6F7FA;
+</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Outside=&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>20</y>
+         <width>21</width>
          <height>20</height>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-font-family: 'Courier New';
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 11px;
-color: #F6F7FA;
-border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;History&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_39">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
         <string notr="true">border: 1rem solid black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;30 &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_40">
-       <property name="geometry">
-        <rect>
-         <x>290</x>
-         <y>30</y>
-         <width>16</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_41">
-       <property name="geometry">
-        <rect>
-         <x>300</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;19&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_42">
-       <property name="geometry">
-        <rect>
-         <x>330</x>
-         <y>30</y>
-         <width>16</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_43">
-       <property name="geometry">
-        <rect>
-         <x>340</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_44">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>30</y>
-         <width>16</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_45">
-       <property name="geometry">
-        <rect>
-         <x>380</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_46">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>30</y>
-         <width>16</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_47">
-       <property name="geometry">
-        <rect>
-         <x>420</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;22&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_48">
-       <property name="geometry">
-        <rect>
-         <x>450</x>
-         <y>30</y>
-         <width>16</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;,&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_49">
+      <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
          <x>460</x>
-         <y>30</y>
-         <width>31</width>
-         <height>16</height>
+         <y>20</y>
+         <width>47</width>
+         <height>20</height>
         </rect>
        </property>
        <property name="styleSheet">
         <string notr="true">border: 1rem solid black;</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;20&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; color:#ffffff;&quot;&gt;° C&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>
@@ -1555,7 +1437,8 @@ color: #F6F7FA;
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">border: 1rem solid black;</string>
+        <string notr="true">border: 1rem solid black;
+font: 10pt &quot;Segoe UI&quot;;</string>
        </property>
        <property name="text">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#ffffff;&quot;&gt;Good&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1567,8 +1450,11 @@ color: #F6F7FA;
          <x>140</x>
          <y>40</y>
          <width>341</width>
-         <height>21</height>
+         <height>22</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius: 7px;min-height: 20px;max-height: 20px;text-align: center</string>
        </property>
        <property name="value">
         <number>24</number>
@@ -2297,6 +2183,8 @@ image: url(:/newPrefix/logo.jpg);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">margin-top: 1px;
+color: green;
+font: 11pt &quot;Segoe UI&quot;;
 </string>
      </property>
      <property name="text">
@@ -2309,11 +2197,14 @@ image: url(:/newPrefix/logo.jpg);</string>
        <x>90</x>
        <y>5</y>
        <width>51</width>
-       <height>16</height>
+       <height>15</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-radius: 7px;min-height: 15px;max-height: 15px;text-align: center;color:white</string>
+     </property>
      <property name="value">
-      <number>24</number>
+      <number>100</number>
      </property>
     </widget>
    </widget>
