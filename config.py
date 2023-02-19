@@ -50,10 +50,14 @@ log = ''
 
 sensor_pressure = True
 sensor_acceleration = True
-sensor_temp = True
 sensor_humidity = True
 sensor_sunlight = True
 sensor_gsm = True
 ground_station_connection = True
 satellite_connection = True
+
+#################################
 data_Of_Camera = True
+sensor_gps=True
+sensor_temp_in = True
+sensor_temp_out = True

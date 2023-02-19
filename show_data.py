@@ -84,9 +84,9 @@ def show_data(self):
         self.LHiumidity = self.findChild(QLabel, "label_100")
         self.LHiumidity.setText(str(config.hiumidity))
 
-        self.label_128.setText(config.sunlight_visible)
-        self.label_130.setText(config.sunlight_infrared)
-        self.label_131.setText(config.sunlight_spectrum)
+        self.label_128.setText(str(config.sunlight_visible))
+        self.label_130.setText(str(config.sunlight_infrared))
+        self.label_131.setText(str(config.sunlight_spectrum))
 
         self.graphWidget.plot(config.height_x, config.height_y)
 
@@ -103,7 +103,7 @@ def show_data(self):
             SPressure.setPixmap(self.pixmapR)
 
         SPressure = self.findChild(QLabel, "label_112")
-        if config.sensor_temp:
+        if config.sensor_temp_in:
             SPressure.setPixmap(self.pixmapG)
         else:
             SPressure.setPixmap(self.pixmapR)
