@@ -1,11 +1,20 @@
+acceleration_angular_x_init=0
+acceleration_angular_y_init = 0
+acceleration_angular_z_init = 0
+
 acceleration_angular_x = 0
 acceleration_angular_y = 0
 acceleration_angular_z = 0
 
+acceleration_linear_x_init = 0
+acceleration_linear_y_init = 0
+acceleration_linear_z_init = 0
+
 acceleration_linear_x = 0
 acceleration_linear_y = 0
-
 acceleration_linear_z = 0
+
+
 acceleration_linear_old_z = 0
 acceleration_linear_time = 0
 acceleration_linear_old_time = 0
@@ -54,7 +63,7 @@ ground_station_connection = True
 satellite_connection = True
 
 
-image_text='--'
+
 #####################################
 coordinate_x = 36.308314
 coordinate_y = 59.529174
@@ -64,3 +73,4 @@ data_Of_Camera = True
 sensor_gps=True
 sensor_temp_in = True
 sensor_temp_out = True
+image_text='--'

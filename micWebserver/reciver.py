@@ -8,6 +8,10 @@ from flask import Flask
 from threading import Thread
 from PIL import Image 
 import io
+from sim800l import SIM800L
+import digitalio
+
+
 app = Flask(__name__)
 data = {
     'payloader1': [],
@@ -18,6 +22,39 @@ logging.basicConfig(filename='/home/pi/log.log',
 logger = logging.getLogger()
 # Setting the threshold of logger to DEBUG
 logger.setLevel(logging.DEBUG)
+
+def LEDs():
+    global led_GSM ,led_recive
+
+    led_recive = digitalio.DigitalInOut(board.D1)
+    led_recive.direction = digitalio.Direction.OUTPUT
+    led_recive.value = True
+
+    led_GSM = digitalio.DigitalInOut(board.D0)
+    led_GSM.direction = digitalio.Direction.OUTPUT
+    led_GSM.value = True
+    
+    time.sleep(10)
+    
+    led_recive.value = False
+    led_GSM.value = False
+
+
+def GSM():
+    try:
+        sim800l = SIM800L()
+        sim800l.setup()
+
+        while True:
+            if sim800l.is_registered():
+                led_GSM.value = True
+                msg = sim800l.read_next_message(all_msg=True)
+                data['payloader1'].append(msg)
+            else:
+                led_GSM.value = False
+            time.sleep(5)
+    except:
+        logger.error('gsm error')
 
 # invalid default values for scoping
 SPI_BUS, CSN_PIN, CE_PIN = (None, None, None)
@@ -60,17 +97,15 @@ def slave(timeout):
     logger.info('start listening nrf')
     pic_byte = bytearray()
     nrf.listen = True  # put radio into RX mode and power up
+    led_recive.value = True
     start = time.monotonic()
     while (time.monotonic() - start) < timeout:
         if nrf.available():
-            # logger.info('nrf available ')
             start = time.monotonic()
             # grab information about the received payload
             pipe_number = nrf.pipe
             # fetch 1 payload from RX FIFO
             buffer = nrf.read()  # also clears nrf.irq_dr status flag
-            # logger.info('getting data: '+str(buffer))
-            # logger.info('pipe_number data: '+str(pipe_number))
             if pipe_number == 1:
                 data['payloader1'].append(buffer.decode())
                 # logger.info('output data is: '+str(data))
@@ -85,7 +120,7 @@ def slave(timeout):
 def data_api():
     global data
     tmp = data
-    logger.info('return data is: '+str(data))
+    logger.info('data sent:' + str(data))
     data = {
         'payloader1': []
     }
@@ -97,16 +132,21 @@ def run_webserver():
 
 
 if __name__ == "__main__":
+    t1 = Thread(target=LEDs)
+    t1.start()
+    
     t = Thread(target=run_webserver)
     t.start()
+    
+    t2 = Thread(target=GSM)
+    t2.start()
     logger.info('webserver started')
     while True:
         try:
             pic_pyte = slave(timeout)
-            print (str(pic_pyte))
             if pic_pyte:
                 logger.info('Start convert picture')
-                final_pic = "static/final_pic{}.jpg".format(picture_num)
+                final_pic = "/home/pi/static/final_pic{}.jpg".format(picture_num)
                 with open(final_pic, "wb") as file:
                     file.write(pic_pyte)
                 #image = Image.open(io.BytesIO(pic_pyte))

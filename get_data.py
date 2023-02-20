@@ -5,13 +5,15 @@ import time
 import logging
 from threading import Thread
 
-logger=''
+logger = ''
+
+
 def send_request_to_iot_panel():
     url = "http://iot.sensifai.com:9090/api/v1/TAO37FyHZEIagFeh1Hb5/telemetry"
     data = {
         "pressure": config.pressure,
-        "acceleration_angular": ((config.acceleration_angular_x**2) + (config.acceleration_angular_y**2)+ (config.acceleration_angular_z)**2)**0.5,
-        "acceleration_linear":((config.acceleration_linear_x**2) + (config.acceleration_linear_y**2)+ (config.acceleration_linear_z)**2)**0.5,
+        "acceleration_angular": ((config.acceleration_angular_x**2) + (config.acceleration_angular_y**2) + (config.acceleration_angular_z)**2)**0.5,
+        "acceleration_linear": ((config.acceleration_linear_x**2) + (config.acceleration_linear_y**2) + (config.acceleration_linear_z)**2)**0.5,
         "speed": config.speed,
         "outside_temp": config.out_temp,
         "inside_temp": config.in_temp,
@@ -35,6 +37,8 @@ def send_request_to_iot_panel():
 
 
 pic_number = 1
+
+
 def get_picture_from_server():
     logger.info('try to get picture')
     global pic_number
@@ -54,14 +58,16 @@ def get_picture_from_server():
 
 def get_data_from_server():
     logging.basicConfig(filename='log/getdata.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
-    # Creating an object
+                        format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
+    # Creating an object logger
     global logger
     logger = logging.getLogger()
-    # Setting the threshold of logger to DEBUG
     logger.setLevel(logging.DEBUG)
+
     url = "http://192.168.137.33:7418"
     # url = "http://127.0.0.1:7418"
+    al_init = 0
+    aa_init = 0
     payload = {}
     headers = {}
     # picture = []
@@ -71,14 +77,15 @@ def get_data_from_server():
         time.sleep(1)
         logger.info("try to get data")
         try:
-            response = requests.request("GET", url, headers=headers, data=payload)
+            response = requests.request(
+                "GET", url, headers=headers, data=payload)
             data_res = json.loads(response.text)
-        except :
+        except:
             logger.error('rasbery not respose')
-            config.ground_station_connection=False
+            config.ground_station_connection = False
             continue
         payloader1 = data_res['payloader1']
-        logger.info('data recived : ' +str(data_res))
+        logger.info('data recived : ' + str(data_res))
         get_picture_from_server()
         for paload in payloader1:
             d = paload.split('_')
@@ -103,10 +110,18 @@ def get_data_from_server():
                     continue
                 config.sensor_acceleration = True
                 acceleration = d[2].split('*')
-                config.acceleration_linear_x = float(acceleration[0])
-                config.acceleration_linear_y = float(acceleration[1])
+                if al_init == 0:
+                    config.acceleration_linear_x_init = float(acceleration[0])
+                    config.acceleration_linear_y_init = float(acceleration[1])
+                    config.acceleration_linear_z_init = float(acceleration[2])
+                    al_init = 1
+                config.acceleration_linear_x = float(
+                    acceleration[0]) - config.acceleration_linear_x_init
+                config.acceleration_linear_y = float(
+                    acceleration[1])-config.acceleration_linear_y_init
                 config.acceleration_linear_old_z = config.acceleration_linear_z
-                config.acceleration_linear_z = float(acceleration[2])
+                config.acceleration_linear_z = float(
+                    acceleration[2])-config.acceleration_linear_z_init
                 config.acceleration_linear_old_time = config.acceleration_linear_time
                 config.acceleration_linear_time = config.time
                 config.speed_6 = config.speed_5
@@ -124,9 +139,17 @@ def get_data_from_server():
                     continue
                 config.sensor_acceleration = True
                 acceleration = d[2].split('*')
-                config.acceleration_angular_x = float(acceleration[0])
-                config.acceleration_angular_y = float(acceleration[1])
-                config.acceleration_angular_z = float(acceleration[2])
+                if aa_init == 0:
+                    config.acceleration_angular_x_init = float(acceleration[0])
+                    config.acceleration_angular_y_init = float(acceleration[1])
+                    config.acceleration_angular_z_init = float(acceleration[2])
+                    aa_init = 1
+                config.acceleration_angular_x = float(
+                    acceleration[0])-config.acceleration_angular_x_init
+                config.acceleration_angular_y = float(
+                    acceleration[1])-config.acceleration_angular_y_init
+                config.acceleration_angular_z = float(
+                    acceleration[2])-config.acceleration_angular_z_init
             if d[1] == 'Ti':
                 if d[0] == '0':
                     config.sensor_temp_in = False
@@ -178,4 +201,3 @@ def get_data_from_server():
         # t = Thread(target=send_request_to_iot_panel)
         # t.start()
         # dashboard http://iot.sensifai.com/cansat/fumcan/
-
