@@ -6,6 +6,8 @@ import folium
 import io
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 
+from PyQt5.QtGui import  QPixmap
+from PyQt5 import QtCore
 
 def show_data(self):
 
@@ -153,3 +155,5 @@ def show_data(self):
             self.alarmText.setText(
                 "warinig: Ground station can not receive any data from camera")
         self.alarmText.setText('info: '+config.log)
+
+

@@ -15,6 +15,7 @@ from show_data import show_data
 from get_data import get_data_from_server
 import config
 
+from worker2 import running_function, ImageWorker
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -206,6 +207,10 @@ class Ui(QtWidgets.QMainWindow):
 
         self.launch()
         self.show()
+    
+    # def UiComponents(self):
+        
+
 
     def launch(self):
         # progressBar_2 Battery
@@ -237,6 +242,7 @@ class Ui(QtWidgets.QMainWindow):
             kwargs=dict(baz="baz", worker=worker_5),
             daemon=True,
         ).start()
+
 
 
 if __name__ == "__main__":

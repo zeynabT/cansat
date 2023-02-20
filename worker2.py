@@ -1,11 +1,12 @@
 
 from PyQt5 import QtCore
-import secrets
 import time
 import config
+from PyQt5.QtGui import  QPixmap
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QLabel
 
-
-class ProgressWorker(QtCore.QObject):
+class ImageWorker(QtCore.QObject):
     started = QtCore.pyqtSignal()
     finished = QtCore.pyqtSignal()
     value_change = QtCore.pyqtSignal(int)
@@ -48,22 +49,22 @@ class PWorker:
     def percentage(self, value):
         pass
 
-from PyQt5.QtGui import  QPixmap
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import QLabel
-from PyQt5.QtWidgets import QLabel, QApplication, QWidget
-def long_running_function(who, baz="0", worker=None):
+
+def running_function(event):
     if worker is None:
         worker = PWorker()
     worker.start()
     while True:
-        if who == 'Pressure':
-            value = config.pressure
-        if who == 'hiumidit':
-            value = config.hiumidity
-        if who == 'Battery':
-            value = config.battery
-        worker.percentage = value
+        # if who == 'Image':
+        #     value = config.pressure
+        receivedImage = QLabel()
+        pixmap = QPixmap('final.jpg')
+        low_rez = QtCore.QSize(321, 200)
+        pixmap = pixmap.scaled(low_rez)
+        receivedImage.setPixmap(pixmap)
+        # imgWidget = self.findChild(QWidget, "widget_7")
+        worker.percentage = receivedImage
 
+ 
         time.sleep(1)
         worker.finish()

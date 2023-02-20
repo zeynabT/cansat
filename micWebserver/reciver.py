@@ -6,11 +6,13 @@ from circuitpython_nrf24l01.rf24 import RF24
 import logging
 from flask import Flask
 from threading import Thread
+from PIL import Image 
+import io
 app = Flask(__name__)
 data = {
     'payloader1': [],
 }
-logging.basicConfig(filename='log.log',
+logging.basicConfig(filename='/home/pi/log.log',
                     format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
 # Creating an object
 logger = logging.getLogger()
@@ -47,7 +49,7 @@ nrf.channel = 22
 nrf.arc = 6
 nrf.auto_ack = True
 
-timeout = 1
+timeout = 2
 picture_num = 1
 
 start0 = time.monotonic()
@@ -55,31 +57,38 @@ start0 = time.monotonic()
 
 def slave(timeout):
     global data
-    nrf.listen = True  # put radio into RX mode and power up
     logger.info('start listening nrf')
-    start = start0
-    pic_pyte=bytearray()
+    pic_byte = bytearray()
+    nrf.listen = True  # put radio into RX mode and power up
+    start = time.monotonic()
     while (time.monotonic() - start) < timeout:
         if nrf.available():
+            # logger.info('nrf available ')
             start = time.monotonic()
             # grab information about the received payload
             pipe_number = nrf.pipe
             # fetch 1 payload from RX FIFO
             buffer = nrf.read()  # also clears nrf.irq_dr status flag
-            logger.info('getting data :'+str(buffer))
+            # logger.info('getting data: '+str(buffer))
+            # logger.info('pipe_number data: '+str(pipe_number))
             if pipe_number == 1:
                 data['payloader1'].append(buffer.decode())
+                # logger.info('output data is: '+str(data))
             else:
-                pic_pyte += buffer
-            time.sleep(0.3)
-    return pic_pyte
+                pic_byte += buffer
+        else:
+            logger.warning('watingig for data')
+    return pic_byte
 
 
 @app.route('/', methods=['GET'])
 def data_api():
     global data
     tmp = data
-    data['payloader1'] = []
+    logger.info('return data is: '+str(data))
+    data = {
+        'payloader1': []
+    }
     return tmp
 
 
@@ -94,17 +103,20 @@ if __name__ == "__main__":
     while True:
         try:
             pic_pyte = slave(timeout)
+            print (str(pic_pyte))
             if pic_pyte:
                 logger.info('Start convert picture')
-                final_pic = "final_pic{}.jpg".format(picture_num)
+                final_pic = "static/final_pic{}.jpg".format(picture_num)
                 with open(final_pic, "wb") as file:
                     file.write(pic_pyte)
+                #image = Image.open(io.BytesIO(pic_pyte))
+                #image.save(final_pic)
                 logger.info('End time converting picture . ' + 'picture name: '+final_pic +
                             str(time.monotonic() - start0))
                 pic_pyte = bytearray()
                 picture_num += 1
         except Exception as e:
-            logger.error('error in main function: '+e)
+            logger.error('error in main function: ')
             time.sleep(0.01)
             pass
 

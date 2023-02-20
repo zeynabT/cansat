@@ -12,12 +12,12 @@ chunk = 0
 byte = fileR.read(28)
 while byte:
     # Open a temporary file and write a chunk of bytes
-    name =  str(chunk)
-    name=name.encode()
-    payloader+=(name+byte)
+    # name =  str(chunk)
+    # name=name.encode()
+    payloader+=(byte)
     # Read next 28 bytes
     byte = fileR.read(28)
-    chunk += 1
+    # chunk += 1
 
  
 fileT = open('picture/final_data.bin', "wb")

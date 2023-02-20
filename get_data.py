@@ -6,8 +6,23 @@ from picture.decode import convert_pic
 # from threading import Thread
 
 
-def send_request_to_iot_panel(data):
+def send_request_to_iot_panel():
     url = "http://iot.sensifai.com:9090/api/v1/TAO37FyHZEIagFeh1Hb5/telemetry"
+    data = {
+        "pressure": 950,
+        "acceleration_angular": 5,
+        "acceleration_linear": 4,
+        "speed": 3,
+        "outside_temp": 40,
+        "inside_temp": 55,
+        "sunlight_infrared": 52,
+        "sunlight_spectrum": 22,
+        "sunlight_visible": 11,
+        "humidity": 55,
+        "height": 200,
+        "img_path": "https://s-rahmani.ir/me.jpg",
+        "image_text": 'Shape Circle and number 65'
+    }
     payload = json.dumps(data)
     headers = {
         'Content-Type': 'application/json'
@@ -16,27 +31,45 @@ def send_request_to_iot_panel(data):
     print(response.text)
 
 
+pic_number = 1
+
+
+def get_picture_from_server():
+    global pic_number
+    # url = "http://192.168.137.33:7418"
+    url = "http://127.0.0.1:7418"
+    r = requests.get(
+        url+'/static/final_pic{}.jpg'.format(pic_number), allow_redirects=True)
+    if (r.status_code == 200):
+        open('final.jpg', 'wb').write(r.content)
+        pic_number += 1
+    else:
+        print('there is no picture')
+
+
 def get_data_from_server():
-    url = "http://192.168.137.154:7418"
-    # url = "http://127.0.0.1:7418"
+    # url = "http://192.168.137.33:7418"
+    url = "http://127.0.0.1:7418"
     payload = {}
     headers = {}
-    picture = []
-    empty_pic_time = 0
+    # picture = []
+    # empty_pic_time = 0
     for i in range(2000):
         time.sleep(1)
         response = requests.request("GET", url, headers=headers, data=payload)
         data_res = json.loads(response.text)
-        if (not data_res['payloader2'] and not data_res['payloader1']):
+        if (not data_res['payloader1']):
             continue
         payloader1 = data_res['payloader1']
-        if (data_res['payloader2']):
-            picture = picture+data_res['payloader2']
-        else:
-            empty_pic_time += 1
-            if empty_pic_time > 1:
-                convert_pic(picture)
-                empty_pic_time = 0
+        # if (data_res['payloader2']):
+        #     picture = picture+data_res['payloader2']
+        # else:
+        #     empty_pic_time += 1
+        #     if empty_pic_time > 1:
+        #         convert_pic(picture)
+        #         empty_pic_time = 0
+        get_picture_from_server()
+        # payloader1=[]
         for paload in payloader1:
             d = paload.split('_')
             if len(d) < 2:
