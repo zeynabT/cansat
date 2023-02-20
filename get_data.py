@@ -2,8 +2,6 @@ import config
 import requests
 import json
 import time
-from picture.decode import convert_pic
-# from threading import Thread
 
 
 def send_request_to_iot_panel():
@@ -32,12 +30,11 @@ def send_request_to_iot_panel():
 
 
 pic_number = 1
-
-
 def get_picture_from_server():
+    print ('get picture ##################################')
     global pic_number
-    # url = "http://192.168.137.33:7418"
-    url = "http://127.0.0.1:7418"
+    url = "http://192.168.137.33:7418"
+    # url = "http://127.0.0.1:7418"
     r = requests.get(
         url+'/static/final_pic{}.jpg'.format(pic_number), allow_redirects=True)
     if (r.status_code == 200):
@@ -48,28 +45,21 @@ def get_picture_from_server():
 
 
 def get_data_from_server():
-    # url = "http://192.168.137.33:7418"
-    url = "http://127.0.0.1:7418"
+    url = "http://192.168.137.33:7418"
+    # url = "http://127.0.0.1:7418"
     payload = {}
     headers = {}
     # picture = []
     # empty_pic_time = 0
-    for i in range(2000):
+    while (True):
         time.sleep(1)
+        print("starting get data **************************************************")
         response = requests.request("GET", url, headers=headers, data=payload)
         data_res = json.loads(response.text)
-        if (not data_res['payloader1']):
-            continue
+        print ('i got data **********************************' , str(data_res))
         payloader1 = data_res['payloader1']
-        # if (data_res['payloader2']):
-        #     picture = picture+data_res['payloader2']
-        # else:
-        #     empty_pic_time += 1
-        #     if empty_pic_time > 1:
-        #         convert_pic(picture)
-        #         empty_pic_time = 0
         get_picture_from_server()
-        # payloader1=[]
+        print('picture recived')
         for paload in payloader1:
             d = paload.split('_')
             if len(d) < 2:

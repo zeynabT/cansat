@@ -149,6 +149,14 @@ def show_data(self):
         # self.webView.setStyleSheet("border-radius: 30px;")
         # self.webView.setParent(self.findChild(QWidget, "widget_9"))
 
+
+
+        pixmap = QPixmap('final.jpg')
+        low_rez = QtCore.QSize(321, 200)
+        pixmap = pixmap.scaled(low_rez)
+        self.receivedImage.setPixmap(pixmap)
+        
+
         # log
         self.alarmText = self.findChild(QLabel, "label_109")
         if config.data_Of_Camera == False:

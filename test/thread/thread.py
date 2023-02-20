@@ -72,6 +72,6 @@ def using_q_runnable():
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
-    #using_q_thread()
-    #using_move_to_thread()
-    using_q_runnable()
+    using_q_thread()
+    # using_move_to_thread()
+    # using_q_runnable()

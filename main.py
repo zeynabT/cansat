@@ -14,8 +14,14 @@ from worker import long_running_function, ProgressWorker
 from show_data import show_data
 from get_data import get_data_from_server
 import config
+import sys
+import time
 
-from worker2 import running_function, ImageWorker
+from PyQt5.QtCore import (QCoreApplication, QObject, QRunnable, QThread,
+                          QThreadPool, pyqtSignal)
+from PyQt5.QtCore import pyqtSlot
+
+
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -30,6 +36,7 @@ def sound():
 
     sys.exit(app2.exec_())
 
+ui=''
 
 class Ui(QtWidgets.QMainWindow):
 
@@ -40,7 +47,8 @@ class Ui(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super(Ui, self).__init__()
         uic.loadUi('CAN-SAT2.ui', self)
-
+        global ui
+        ui=self
         Coordinate_x = self.findChild(QLabel, "label_103")
         Coordinate_x.setText(str(config.coordinate_x))
         Coordinate_y = self.findChild(QLabel, "label_105")
@@ -143,13 +151,13 @@ class Ui(QtWidgets.QMainWindow):
         pixmap = pixmap.scaled(low_rez)
         ILogo.setPixmap(pixmap)
 
-        receivedImage = QLabel()
+        self.receivedImage = QLabel()
         pixmap = QPixmap('img/1.jpg')
         low_rez = QtCore.QSize(321, 200)
         pixmap = pixmap.scaled(low_rez)
-        receivedImage.setPixmap(pixmap)
+        self.receivedImage.setPixmap(pixmap)
         imgWidget = self.findChild(QWidget, "widget_7")
-        receivedImage.setParent(imgWidget)
+        self.receivedImage.setParent(imgWidget)
 
         # Sensors
         self.pixmapG = QPixmap('img/button-green.jpg')
@@ -205,12 +213,21 @@ class Ui(QtWidgets.QMainWindow):
         t = Thread(target=show_data, args=(self,), daemon=True)
         t.start()
 
-        self.launch()
-        self.show()
-    
-    # def UiComponents(self):
-        
+        # self.launch()
+        # t = Thread(target=self.on_click, daemon=True)
+        # t.start()
 
+        self.show()
+        
+    # @pyqtSlot()
+    # def on_click(self):
+    #     time.sleep(3)
+    #     print('PyQt5 button click')
+        # image = QFileDialog.getOpenFileName(None, 'OpenFile', '', "Image file(*.jpg)")
+        # imagePath = image[0]
+        # pixmap = QPixmap('img/logo-white.jpg')
+        # self.receivedImage.setPixmap(pixmap)
+        
 
     def launch(self):
         # progressBar_2 Battery
@@ -242,6 +259,7 @@ class Ui(QtWidgets.QMainWindow):
             kwargs=dict(baz="baz", worker=worker_5),
             daemon=True,
         ).start()
+
 
 
 
