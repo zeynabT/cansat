@@ -2,64 +2,84 @@ import config
 import requests
 import json
 import time
+import logging
+from threading import Thread
 
-
+logger=''
 def send_request_to_iot_panel():
     url = "http://iot.sensifai.com:9090/api/v1/TAO37FyHZEIagFeh1Hb5/telemetry"
     data = {
-        "pressure": 950,
-        "acceleration_angular": 5,
-        "acceleration_linear": 4,
-        "speed": 3,
-        "outside_temp": 40,
-        "inside_temp": 55,
-        "sunlight_infrared": 52,
-        "sunlight_spectrum": 22,
-        "sunlight_visible": 11,
-        "humidity": 55,
-        "height": 200,
-        "img_path": "https://s-rahmani.ir/me.jpg",
-        "image_text": 'Shape Circle and number 65'
+        "pressure": config.pressure,
+        "acceleration_angular": ((config.acceleration_angular_x**2) + (config.acceleration_angular_y**2)+ (config.acceleration_angular_z)**2)**0.5,
+        "acceleration_linear":((config.acceleration_linear_x**2) + (config.acceleration_linear_y**2)+ (config.acceleration_linear_z)**2)**0.5,
+        "speed": config.speed,
+        "outside_temp": config.out_temp,
+        "inside_temp": config.in_temp,
+        "sunlight_infrared": config.sunlight_infrared,
+        "sunlight_spectrum": config.sunlight_spectrum,
+        "sunlight_visible": config.sunlight_visible,
+        "humidity": config.hiumidity,
+        "height": config.height_y,
+        "img_path": "http://secure-iot.ir/cansat/1.jpg",
+        "image_text": config.image_text
     }
     payload = json.dumps(data)
     headers = {
         'Content-Type': 'application/json'
     }
-    response = requests.request("POST", url, headers=headers, data=payload)
-    print(response.text)
+    try:
+        requests.request("POST", url, headers=headers, data=payload)
+        logger.info('data sent to server')
+    except:
+        logger.error('some error in sending data to server')
 
 
 pic_number = 1
 def get_picture_from_server():
-    print ('get picture ##################################')
+    logger.info('try to get picture')
     global pic_number
     url = "http://192.168.137.33:7418"
     # url = "http://127.0.0.1:7418"
-    r = requests.get(
-        url+'/static/final_pic{}.jpg'.format(pic_number), allow_redirects=True)
-    if (r.status_code == 200):
-        open('final.jpg', 'wb').write(r.content)
-        pic_number += 1
-    else:
-        print('there is no picture')
+    try:
+        r = requests.get(
+            url+'/static/final_pic{}.jpg'.format(pic_number), allow_redirects=True)
+        if (r.status_code == 200):
+            open('final.jpg', 'wb').write(r.content)
+            pic_number += 1
+        else:
+            print('there is no picture')
+    except:
+        logger.error('rasbery not respose')
 
 
 def get_data_from_server():
+    logging.basicConfig(filename='log/getdata.log',
+                    format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
+    # Creating an object
+    global logger
+    logger = logging.getLogger()
+    # Setting the threshold of logger to DEBUG
+    logger.setLevel(logging.DEBUG)
     url = "http://192.168.137.33:7418"
     # url = "http://127.0.0.1:7418"
     payload = {}
     headers = {}
     # picture = []
     # empty_pic_time = 0
+    logger.info('start logging ...')
     while (True):
         time.sleep(1)
-        print("starting get data **************************************************")
-        response = requests.request("GET", url, headers=headers, data=payload)
-        data_res = json.loads(response.text)
-        print ('i got data **********************************' , str(data_res))
+        logger.info("try to get data")
+        try:
+            response = requests.request("GET", url, headers=headers, data=payload)
+            data_res = json.loads(response.text)
+        except :
+            logger.error('rasbery not respose')
+            config.ground_station_connection=False
+            continue
         payloader1 = data_res['payloader1']
+        logger.info('data recived : ' +str(data_res))
         get_picture_from_server()
-        print('picture recived')
         for paload in payloader1:
             d = paload.split('_')
             if len(d) < 2:
@@ -155,8 +175,7 @@ def get_data_from_server():
                 config.pressure = float(d[2])
 
             config.log = str(response.text)
-            # t = Thread(target=send_request_to_iot_panel, args=(data,))
-            # t.start()
-        # send_request_to_iot_panel(data)
-        # dashboard http://iot.sensifai.com:9090/dashboard/a68e93e0-8c44-11ed-ab34-194fa8ffdeff?publicId=e125ce10-927a-11ed-9ada-194fa8ffdeff
-# img_path
+        # t = Thread(target=send_request_to_iot_panel)
+        # t.start()
+        # dashboard http://iot.sensifai.com/cansat/fumcan/
+

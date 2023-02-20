@@ -40,9 +40,6 @@ height_x = []
 height_y = []
 
 time = 0
-#####################################
-coordinate_x = 36.308314
-coordinate_y = 59.529174
 
 battery = 101
 
@@ -55,6 +52,12 @@ sensor_sunlight = True
 sensor_gsm = True
 ground_station_connection = True
 satellite_connection = True
+
+
+image_text='--'
+#####################################
+coordinate_x = 36.308314
+coordinate_y = 59.529174
 
 #################################
 data_Of_Camera = True
